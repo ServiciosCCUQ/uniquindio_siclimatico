@@ -11,9 +11,9 @@ class Estacion(models.Model):
 	
 	name = fields.Char('Nombre', required=True)
 	codinterno = fields.Char('Codigo Interno',)
-	coordenadax = fields.Text('Coordenas en X', required=False)
-	coordenaday = fields.Text('Coordenas en Y', required=False)
-	state = fields.Selection(string='Estado', required=True,  selection=estados )
+	coordenadax = fields.Char('Coordenas en X', required=False)
+	coordenaday = fields.Char('Coordenas en Y', required=False)
+	state = fields.Selection(string='Estado', required=True,  selection=estados , default=1)
 	descripcion = fields.Text('Descripcion', required=False)
 	sensores_ids = fields.One2many(string='Sensores',comodel_name='uniquindio.estacion.sensores',inverse_name='estacion_id')
 

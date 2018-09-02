@@ -19,3 +19,6 @@
 #
 ##############################################################################
 import tiposensor
+import estaciones
+import sensoresestacion
+import medicion

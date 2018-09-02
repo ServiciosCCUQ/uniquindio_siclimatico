@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="estacion_view_filter" model="ir.ui.view">
+			<field name="name">Estacion Vista Busqueda</field>
+			<field name="model">uniquindio.estacion</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Estacion">
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+		<record id="estacion_view_tree" model="ir.ui.view">
+			<field name="name">Estacion Vista Lista</field>
+			<field name="model">uniquindio.estacion</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Estacion">
+					<field name="name"/>
+					<field name="codinterno"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		<record id="estacion_view_form_" model="ir.ui.view">
+			<field name="name">Estacion Vista Formulario</field>
+			<field name="model">uniquindio.estacion</field>
+			<field name="arch" type="xml">
+				<form string="Estacion" version="7.0">
+					<header>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="codinterno"/>
+							<field name="descripcion"/>
+						</group>
+						<group string="Geolocalizacion">
+							<field name="coordenadax"/>
+							<field name="coordenaday"/>
+						</group>
+						<group string="Sensores Disponibles">
+							<field name="sensores_ids">
+								<tree editable="top">
+									<field name="tipo_id"/>
+									<field name="intervalo"/>
+									<field name="state"/>
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="estacion_action" model="ir.actions.act_window">
+			<field name="name">Estaciones</field>
+			<field name="res_model">uniquindio.estacion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem action="estacion_action" id="estacion_menu" name="Estaciones" parent="sic_menu_principal"/>
+	</data>
+</odoo>

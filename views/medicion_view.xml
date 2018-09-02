@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="medicion_view_filter" model="ir.ui.view">
+			<field name="name">Medicion Vista Busqueda</field>
+			<field name="model">uniquindio.medicion</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Medicion">
+					<field name="estacion_id"/>
+				</search>
+			</field>
+		</record>
+		<record id="medicion_view_tree" model="ir.ui.view">
+			<field name="name">Medicion Vista Lista</field>
+			<field name="model">uniquindio.medicion</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Medicion">
+					<field name="create_date"/>
+					<field name="estacion_id"/>
+					<field name="tipo_id"/>
+					<field name="valor"/>
+					<field name="unidad"/>
+				</tree>
+			</field>
+		</record>
+		<record id="medicion_view_form_" model="ir.ui.view">
+			<field name="name">Medicion Vista Formulario</field>
+			<field name="model">uniquindio.medicion</field>
+			<field name="arch" type="xml">
+				<form string="Medicion" version="7.0">
+					<sheet>
+						<group>
+							<field name="estacion_id"/>
+							<field name="tipo_id"/>
+							<field name="valor"/>
+							<field name="unidad"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="medicion_action" model="ir.actions.act_window">
+			<field name="name">Medicion</field>
+			<field name="res_model">uniquindio.medicion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem action="medicion_action" id="medicion_menu" name="Mediciones" parent="sic_menu_principal"/>
+	</data>
+</odoo>

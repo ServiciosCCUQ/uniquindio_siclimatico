@@ -33,7 +33,12 @@
 	Gestion de Datos Climaticos y Representación de Variables a traves de Analitica	
 	
 	""",
-	#'data': [],
+	'data': [
+		'views/sic_menu.xml',
+		'views/tiposensor_view.xml',
+		'views/estaciones_view.xml',
+		'views/medicion_view.xml',
+	],
 	'auto_install': False,
 	'installable': True,
 }
