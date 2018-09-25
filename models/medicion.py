@@ -6,6 +6,6 @@ class Medicion(models.Model):
 
 	estacion_id = fields.Many2one(string='Estacion',required=True,comodel_name='uniquindio.estacion')
 	tipo_id = fields.Many2one(string='Tipo',required=True,comodel_name='uniquindio.tiposensor')	
-	valor = fields.Float('Valor', required=True)
+	valor = fields.Float('Valor', required=True , group_operator="avg")
 	unidad = fields.Char('Unidad Medida', required=True)
 

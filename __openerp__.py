@@ -38,6 +38,7 @@
 		'views/tiposensor_view.xml',
 		'views/estaciones_view.xml',
 		'views/medicion_view.xml',
+		'report/medicion_report_view.xml',
 	],
 	'auto_install': False,
 	'installable': True,
