@@ -45,6 +45,6 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<menuitem action="tiposensor_action" id="tiposensor_menu" name="Tipo Sensor" parent="sic_menu_principal"/>
+		<menuitem action="tiposensor_action" id="tiposensor_menu" name="Tipo Sensor" parent="sic_menu_config"/>
 	</data>
 </odoo>
