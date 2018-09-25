@@ -66,9 +66,9 @@
             <field name="name">Medicion Vista Pivot</field>
             <field name="model">uniquindio.medicion</field>
             <field name="arch" type="xml">
-                <pivot string="Pivot" >
+                <pivot string="Pivot" display_quantity="true">
                     <field name="create_date" type="row"/>                    
-                    <field name="estacion_id" type="col"/>                                      
+                    <field name="estacion_id" type="col"/>                                    
                 </pivot>
             </field>
         </record>
