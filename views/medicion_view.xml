@@ -55,7 +55,7 @@
             <field name="arch" type="xml">
                 <graph string="Grafica" >
                     <field name="create_date" type="row"/>                    
-                    <field name="estacion_id" type="col"/>                    
+                    <field name="tipo_id" type="col"/>                    
                 </graph>
             </field>
         </record>
