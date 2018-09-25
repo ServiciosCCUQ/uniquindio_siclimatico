@@ -58,6 +58,6 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<menuitem action="estacion_action" id="estacion_menu" name="Estaciones" parent="sic_menu_principal"/>
+		<menuitem action="estacion_action" id="estacion_menu" name="Estaciones" parent="sic_menu_config"/>
 	</data>
 </odoo>
