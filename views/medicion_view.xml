@@ -54,7 +54,7 @@
             <field name="model">uniquindio.medicion</field>
             <field name="arch" type="xml">
                 <graph string="Grafica" >
-                    <field name="create_date" type="row"/>                    
+                    <field name="valor" type="row"/>                    
                     <field name="tipo_id" type="col"/>                    
                 </graph>
             </field>
