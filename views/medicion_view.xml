@@ -7,6 +7,29 @@
 			<field name="arch" type="xml">
 				<search string="Buscar Medicion">
 					<field name="estacion_id"/>
+					<separator/>
+					<group expand="0" string_="Filtros de Tiempo">
+						<filter domain="[('create_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('create_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Mediciones Realizadas Dia Hoy" name="med_hoy" string="Mediciones Hoy" />
+						<filter domain="[('create_date','&lt;=',(context_today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('create_date','&gt;=',(context_today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]" help="Mediciones Realizadas Mes Actual" name="med_mes_actual" string="Mediciones Mes Actual"/>
+
+						<filter domain="[('create_date','&lt;=', time.strftime('%%Y-03-31')),('create_date','&gt;=',time.strftime('%%Y-01-01'))]" name="med_primer_trimestre" string="Mediciones Primer Trimestre"/>
+						<filter domain="[('create_date','&lt;=', time.strftime('%%Y-06-30')),('create_date','&gt;=',time.strftime('%%Y-04-01'))]" name="med_segundo_trimestre" string="Mediciones Segundo Trimestre"/>
+						<filter domain="[('create_date','&lt;=', time.strftime('%%Y-09-30')),('create_date','&gt;=',time.strftime('%%Y-07-01'))]" name="med_tercer_trimestre" string="Mediciones Tercer Trimestre"/>
+						<filter domain="[('create_date','&lt;=', time.strftime('%%Y-12-31')),('create_date','&gt;=',time.strftime('%%Y-10-01'))]" name="med_cuarto_trimestre" string="Mediciones Cuarto Trimestre"/>
+						<filter domain="[('create_date','&gt;=',(context_today()-relativedelta(years=1)).strftime('%%Y-01-01')),('create_date','&lt;',time.strftime('%%Y-01-01'))]" help="Mediciones para el año pasado." name="med_anio_pasado" string="Mediciones Año pasado"/>
+						<filter domain="[('create_date','&lt;=', time.strftime('%%Y-12-31')),('create_date','&gt;=',time.strftime('%%Y-01-01'))]" help="Mediciones Año Actual." name="med_anio_actual" string="Mediciones Este Año"/>						
+					</group>
+					<separator/>
+					<group expand="0" string="Ver por ...">
+						<filter context="{'group_by' :'estacion_id'}" domain="[]" string="Estacion"/>
+						<filter context="{'group_by' :'tipo_id'}" domain="[]" string="Tipo"/>
+						<separator />
+						<filter context="{'group_by' :'create_date:year'}" domain="[]" string="Año" name="filter_anio"/>
+			           	<filter context="{'group_by' :'create_date:month'}" domain="[]" string="Mes" name="filter_mes"/>
+			           	<filter context="{'group_by' :'create_date:week'}" domain="[]" string="Semana" name="filter_semana"/>
+			           	<filter context="{'group_by' :'create_date:day'}" domain="[]" string="Dia" name="filter_dia"/>
+
+					</group>
 				</search>
 			</field>
 		</record>
