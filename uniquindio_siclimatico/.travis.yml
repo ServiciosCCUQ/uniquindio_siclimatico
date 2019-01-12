@@ -30,6 +30,10 @@ addons:
 #  - gem install bootstrap-sass
 #  - gem install compass --pre
 
+branches:
+  except:
+  - gh-pages
+
 env:
   global:
   - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
