@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -30,9 +31,8 @@
         """
     Sistema de Informacion Climatico
 
-    Gestion de Datos Climaticos y Representación 
-    de Variables a traves de Analitica 
-    
+    Gestion de Datos Climaticos y Representación
+    de Variables a traves de Analitica    
     """,
         'data': [
             'views/sic_menu.xml',
