@@ -20,26 +20,26 @@
 ##############################################################################
 
 {
-	'name' : 'Uniquindio: Sistema de Informacion Climatico',
-	'version': '1.0',	
-	'depends': ['base'],
-	'author': 'Gustavo Salgado - Fredy Alexander Espana',
-	'website': 'https://www.odoo.com/',
-	'category': 'iot',
-	'description': 
-	"""
+    'name': 'Uniquindio: Sistema de Informacion Climatico',
+    'version': '1.0',
+    'depends': ['base'],
+    'author': 'Gustavo Salgado - Fredy Alexander Espana',
+    'website': 'https://www.odoo.com/',
+    'category': 'iot',
+    'description':
+        """
 	Sistema de Informacion Climatico
 
 	Gestion de Datos Climaticos y Representación de Variables a traves de Analitica	
 	
 	""",
-	'data': [
-		'views/sic_menu.xml',
-		'views/tiposensor_view.xml',
-		'views/estaciones_view.xml',
-		'views/medicion_view.xml',
-		'report/medicion_report_view.xml',
-	],
-	'auto_install': False,
-	'installable': True,
+        'data': [
+            'views/sic_menu.xml',
+            'views/tiposensor_view.xml',
+            'views/estaciones_view.xml',
+        'views/medicion_view.xml',
+        'report/medicion_report_view.xml',
+    ],
+    'auto_install': False,
+    'installable': True,
 }
