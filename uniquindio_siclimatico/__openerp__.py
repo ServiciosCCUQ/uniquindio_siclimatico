@@ -32,7 +32,7 @@
     Sistema de Informacion Climatico
 
     Gestion de Datos Climaticos y Representación
-    de Variables a traves de Analitica    
+    de Variables a traves de Analitica
     """,
         'data': [
             'views/sic_menu.xml',

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -18,7 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import tiposensor
-import estaciones
-import sensoresestacion
-import medicion
+from . import tiposensor
+from . import estaciones
+from . import sensoresestacion
+from . import medicion

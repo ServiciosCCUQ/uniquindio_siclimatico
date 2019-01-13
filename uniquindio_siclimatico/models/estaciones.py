@@ -19,4 +19,5 @@ class Estacion(models.Model):
         string='Estado', required=True,  selection=estados, default=1)
     descripcion = fields.Text('Descripcion', required=False)
     sensores_ids = fields.One2many(
-        string='Sensores', comodel_name='uniquindio.estacion.sensores', inverse_name='estacion_id')
+        string='Sensores', comodel_name='uniquindio.estacion.sensores',
+        inverse_name='estacion_id')
