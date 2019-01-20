@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/ServiciosCCUQ/uniquindio_siclimatico.svg?branch=master)](https://travis-ci.com/ServiciosCCUQ/uniquindio_siclimatico)
+[![codecov](https://codecov.io/gh/ServiciosCCUQ/uniquindio_siclimatico/branch/master/graph/badge.svg)](https://codecov.io/gh/ServiciosCCUQ/uniquindio_siclimatico)
 
 # CEAM: Climatic Service Platform
 
