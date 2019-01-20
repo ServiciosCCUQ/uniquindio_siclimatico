@@ -35,11 +35,13 @@
     de Variables a traves de Analitica
     """,
         'data': [
+            'security/uniquindio_siclimatico_security.xml',
+            'security/ir.model.access.csv',
             'views/sic_menu.xml',
             'views/tiposensor_view.xml',
             'views/estaciones_view.xml',
-        'views/medicion_view.xml',
-        'report/medicion_report_view.xml',
+            'views/medicion_view.xml',
+            'report/medicion_report_view.xml',
     ],
     'auto_install': False,
     'installable': True,

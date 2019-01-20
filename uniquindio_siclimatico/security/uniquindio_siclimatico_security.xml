@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="csp_admin" model="res.groups">
+            <field name="name">SICLIMATICO - Administrador</field>
+        </record>
+        <record id="csp_investigador" model="res.groups">
+            <field name="name">SICLIMATICO - Investigador</field>
+        </record>
+        <record id="csp_estacion" model="res.groups">
+            <field name="name">SICLIMATICO - Estacion</field>
+        </record>
+    </data>
+</odoo>
