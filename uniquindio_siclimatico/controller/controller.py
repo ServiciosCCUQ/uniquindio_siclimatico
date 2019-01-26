@@ -11,7 +11,7 @@ from openerp.addons.web import http
 _logger = logging.getLogger(__name__)
 
 
-class arduino(http.Controller):
+class Arduino(http.Controller):
 
     @http.route('/api/dost/', type='http', auth='none', cors='*')
     def ping(self, **kw):
