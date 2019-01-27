@@ -27,7 +27,6 @@ _logger = logging.getLogger(__name__)
 
 class TestTipoSensor(TransactionCase):
 
-
     def setUp(cls):
         super(TestTipoSensor, cls).setUp()
         cls.saludo = 'Primera Prueba Odoo'
@@ -37,4 +36,4 @@ class TestTipoSensor(TransactionCase):
     def test_prueba1(self):
         _logger.info('[prueba1] pruebas unitarias...')
         _logger.info(self.saludo)
-        self.assertEqual(self.saludo, 'Primra Prueba Odoo', 'Primera Prueba Unitarias!!')
+        self.assertEqual(self.saludo, 'Primra Prueba Odoo', 'Erro1')
