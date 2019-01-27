@@ -36,4 +36,4 @@ class TestTipoSensor(TransactionCase):
     def test_prueba1(self):
         _logger.info('[prueba1] pruebas unitarias...')
         _logger.info(self.saludo)
-        self.assertEqual(self.saludo, 'Primra Prueba Odoo', 'Erro1')
+        self.assertEqual(self.saludo, 'Primera Prueba Odoo', 'Erro1')
