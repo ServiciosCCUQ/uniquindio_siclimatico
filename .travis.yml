@@ -83,4 +83,5 @@ script:
 
 after_success:
   - travis_after_tests_success
-  - ssh uq@ceam-csp.me pwd
+  - ssh uq@ceam-csp.me /home/uq/uniquindio/autodeploy.sh
+
