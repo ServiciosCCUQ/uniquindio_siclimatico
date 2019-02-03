@@ -72,7 +72,7 @@ virtualenv:
 install:
   - openssl aes-256-cbc -k $encrypted_key -in sic.enc -out /tmp/deploy_rsa -d
   - eval "$(ssh-agent -s)"
-  - chmod600 /tmp/deploy_rsa
+  - chmod 600 /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa 
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
