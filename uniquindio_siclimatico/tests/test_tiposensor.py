@@ -21,19 +21,90 @@
 ##############################################################################
 import logging
 from openerp.tests.common import TransactionCase
+from openerp.exceptions import AccessError
 
 _logger = logging.getLogger(__name__)
 
 
 class TestTipoSensor(TransactionCase):
 
-    def setUp(cls):
-        super(TestTipoSensor, cls).setUp()
-        cls.saludo = 'Primera Prueba Odoo'
+    def setUp(self):
+        super(TestTipoSensor, self).setUp()
+        self.saludo = 'Primera Prueba Odoo'
         _logger.info('[setUp] esto es una impresion desde pruebas unitarias.')
-        _logger.info(cls.saludo)
+        _logger.info(self.saludo)
+        self.tiposensor_obj = self.env['uniquindio.tiposensor']
+        self.res_user_model = self.env['res.users']
+        self.main_company = self.env.ref('base.main_company')
+        partner_manager = self.env.ref('base.group_partner_manager')
+        self.csp_admin = self.env.ref('uniquindio_siclimatico.csp_admin')
+        self.csp_investigador = self.env.ref('uniquindio_siclimatico.csp_investigador')
+        self.csp_estacion = self.env.ref('uniquindio_siclimatico.csp_estacion')
 
-    def test_prueba1(self):
+        # groups_data = self.res_users.read_group(cr, uid, domain, fields=['login'], groupby=['login'], orderby='login DESC', limit=3, offset=3)
+
+        self.admin_user = self.res_user_model.with_context({'no_reset_password': True}).create(dict(
+            name="Administrador",
+            company_id=self.main_company.id,
+            login="soporte1",
+            email="soporte1@ceam-csp.me",
+            color=1,
+            function='Friend',
+            date='2015-03-28',
+            #notify_email="none",
+            groups_id=[(6, 0, [self.csp_admin.id,partner_manager.id])]
+        ))
+        self.inv_user = self.res_user_model.with_context({'no_reset_password': True}).create(dict(
+            name="Investigador",
+            company_id=self.main_company.id,
+            login="inv1",
+            email="invt1@ceam-csp.me",
+            notify_email='none',
+            groups_id=[(6, 0, [self.csp_investigador.id,partner_manager.id])]
+        ))
+        self.est_user = self.res_user_model.with_context({'no_reset_password': True}).create(dict(
+            name="Estacion",
+            company_id=self.main_company.id,
+            login="est1",
+            email="est1@ceam-csp.me",
+            notify_email='none',
+            groups_id=[(6, 0, [self.csp_estacion.id,partner_manager.id])]
+        ))        
+
+
+
+    def test_comprobar_busqueda(self):
         _logger.info('[prueba1] pruebas unitarias...')
         _logger.info(self.saludo)
-        self.assertEqual(self.saludo, 'Primra Prueba Odoo', 'Erro1')
+        self.assertEqual(self.saludo, 'Primera Prueba Odoo', 'Erro1')
+
+
+    def test_comprobacion_seguridad(self):
+
+        #Validar que SI se pueda crear con el usuario administrador
+        self.tiposensor1 = self.tiposensor_obj.sudo(self.admin_user.id).create(dict(
+            name="Humedad-Y69",
+            tipo=2,
+            unidad='%',
+        ))
+
+        # No permitir crear sensores de parte de un Investigador
+        with self.assertRaises(AccessError):
+            self.tiposensor2 = self.tiposensor_obj.sudo(self.inv_user.id).create(dict(
+                name="Temperatura DHT11",
+                tipo=1,
+                unidad='Grados Centigrados',
+            ))
+
+        # No permitir crear sensores de parte de una estacion
+        with self.assertRaises(AccessError):
+            self.tiposensor3 = self.tiposensor_obj.sudo(self.est_user.id).create(dict(
+                name="Temperatura DHT11",
+                tipo=1,
+                unidad='Grados Centigrados',
+            ))
+
+
+
+        # self.assertEqual(tiposensor1.tipo, 2, 'No creado correctamente')      
+
