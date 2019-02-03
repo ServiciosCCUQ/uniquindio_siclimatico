@@ -83,5 +83,6 @@ script:
 
 after_success:
   - travis_after_tests_success
-  - ssh uq@ceam-csp.me /home/uq/uniquindio/autodeploy.sh
+  - ssh deploy@ceam-csp.me /home/deploy/update.sh 
+  - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
 
