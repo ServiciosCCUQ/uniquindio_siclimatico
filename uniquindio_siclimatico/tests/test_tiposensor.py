@@ -73,12 +73,6 @@ class TestTipoSensor(TransactionCase):
 
 
 
-    def test_comprobar_busqueda(self):
-        _logger.info('[prueba1] pruebas unitarias...')
-        _logger.info(self.saludo)
-        self.assertEqual(self.saludo, 'Primera Prueba Odoo', 'Erro1')
-
-
     def test_comprobacion_seguridad(self):
 
         #Validar que SI se pueda crear con el usuario administrador
@@ -107,4 +101,3 @@ class TestTipoSensor(TransactionCase):
 
 
         # self.assertEqual(tiposensor1.tipo, 2, 'No creado correctamente')      
-
