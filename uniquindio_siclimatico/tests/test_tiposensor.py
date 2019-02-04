@@ -40,7 +40,7 @@ class TestTipoSensor(TransactionCase):
         self.csp_admin = self.env.ref('uniquindio_siclimatico.csp_admin')
         self.csp_inve = self.env.ref('uniquindio_siclimatico.csp_investigador')
         self.csp_estacion = self.env.ref('uniquindio_siclimatico.csp_estacion')
-        
+
         # groups_data = self.res_users.read_group(cr, uid, domain,
 
         # No enviar confirmacion para el reinicio de clave
