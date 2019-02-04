@@ -26,12 +26,12 @@ from openerp.exceptions import AccessError
 _logger = logging.getLogger(__name__)
 
 
-class TestTipoSensor(TransactionCase):
+class TestEstacion(TransactionCase):
 
     def setUp(self):
-        super(TestTipoSensor, self).setUp()
-        _logger.info('[setUp] esto es una impresion desde pruebas unitarias.')
-        self.model = self.env['uniquindio.tiposensor']
+        super(TestEstacion, self).setUp()
+        _logger.info('[setUp] Pruebas Estacion')
+        self.model = self.env['uniquindio.estacion']
         self.user_model = self.env['res.users']
         self.main_company = self.env.ref('base.main_company')
         partner_manager = self.env.ref('base.group_partner_manager')
@@ -72,48 +72,48 @@ class TestTipoSensor(TransactionCase):
             groups_id=[(6, 0, [self.csp_estacion.id, partner_manager.id])]
         ))
 
-        self.tiposensor = self.model.create(
-            dict(name="Humedad-Sensor", tipo=2, unidad='%'))
+        self.estacion = self.model.create(
+            dict(name="BlueStation", state=1, codinterno='blue'))
 
     def test_crear(self):
 
         # Validar que SI se pueda crear con el usuario administrador
         usr = self.admin_user.id
-        self.tiposensor1 = self.model.sudo(usr).create(
-            dict(name="Humedad-Y69", tipo=2, unidad='%'))
+        self.estacion1 = self.model.sudo(usr).create(
+            dict(name="Estacion1", state=1, codinterno='est1'))
 
-        # No permitir crear sensores de parte de un Investigador
+        # No permitir crear estaciones de parte de un Investigador
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.tiposensor2 = self.model.sudo(usr).create(
-                dict(name="Temperatura DHT11",
-                     tipo=1,
-                     unidad='Grados Centigrados'))
+            self.estacion2 = self.model.sudo(usr).create(
+                dict(name="Estacion2",
+                     state=1,
+                     codinterno='est2'))
 
-        # No permitir crear sensores de parte de una estacion
+        # No permitir crear estaciones de parte de una estacion
         with self.assertRaises(AccessError):
             usr = self.est_user.id
-            self.tiposensor3 = self.model.sudo(usr).create(
-                dict(name="Temperatura DHT11",
-                     tipo=1,
-                     unidad='Grados Centigrados'))
+            self.estacion3 = self.model.sudo(usr).create(
+                dict(name="Estacion3",
+                     state=1,
+                     codinterno='est3'))
 
     def test_modificar(self):
-        nombre_sensor = 'sensor humedad'
+        nombre_estacion = 'Green Station'
 
         usr = self.admin_user.id
-        self.tiposensor.sudo(usr).write({'name': nombre_sensor})
-        self.assertEqual(self.tiposensor.name, nombre_sensor)
+        self.estacion.sudo(usr).write({'name': nombre_estacion})
+        self.assertEqual(self.estacion.name, nombre_estacion)
 
-        # No permitir crear sensores de parte de un Investigador
+        # No permitir crear estaciones de parte de un Investigador
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.tiposensor.sudo(usr).write({'name': nombre_sensor})
+            self.estacion.sudo(usr).write({'name': nombre_estacion})
 
-        # No permitir crear sensores de parte de una estacion
+        # No permitir crear estaciones de parte de una estacion
         with self.assertRaises(AccessError):
             usr = self.est_user.id
-            self.tiposensor.sudo(usr).write({'name': nombre_sensor})
+            self.estacion.sudo(usr).write({'name': nombre_estacion})
 
     def test_consultar(self):
 
@@ -133,12 +133,12 @@ class TestTipoSensor(TransactionCase):
 
         usr = self.admin_user.id
         with self.assertRaises(AccessError):
-            self.tiposensor.sudo(usr).unlink()
+            self.estacion.sudo(usr).unlink()
 
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.tiposensor.sudo(usr).unlink()
+            self.estacion.sudo(usr).unlink()
 
         with self.assertRaises(AccessError):
             usr = self.est_user.id
-            self.tiposensor.sudo(usr).unlink()
+            self.estacion.sudo(usr).unlink()

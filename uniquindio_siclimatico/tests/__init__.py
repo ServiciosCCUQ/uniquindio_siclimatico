@@ -20,3 +20,4 @@
 #
 ##############################################################################
 from . import test_tiposensor
+from . import test_estacion
