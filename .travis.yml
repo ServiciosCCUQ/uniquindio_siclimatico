@@ -31,6 +31,14 @@ addons:
 #  - gem install bootstrap-sass
 #  - gem install compass --pre
 
+notifications:
+  email:
+    recipients:
+      - gasalgadoo@uqvirtual.edu.co
+      - faespanag@uqvirtual.edu.co
+    on_success: always
+    on_failure: always
+
 env:
   global:
   - VERSION="9.0" TESTS="0" LINT_CHECK="0"
