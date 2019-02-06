@@ -30,7 +30,6 @@ class TestTipoSensor(TransactionCase):
 
     def setUp(self):
         super(TestTipoSensor, self).setUp()
-        _logger.info('[setUp] esto es una impresion desde pruebas unitarias.')
         self.model = self.env['uniquindio.tiposensor']
         self.user_model = self.env['res.users']
         self.main_company = self.env.ref('base.main_company')
@@ -38,8 +37,6 @@ class TestTipoSensor(TransactionCase):
         self.csp_admin = self.env.ref('uniquindio_siclimatico.csp_admin')
         self.csp_inve = self.env.ref('uniquindio_siclimatico.csp_investigador')
         self.csp_estacion = self.env.ref('uniquindio_siclimatico.csp_estacion')
-
-        # groups_data = self.res_users.read_group(cr, uid, domain,
 
         # No enviar confirmacion para el reinicio de clave
         contex = {'no_reset_password': True}
@@ -52,7 +49,6 @@ class TestTipoSensor(TransactionCase):
             color=1,
             function='Friend',
             date='2015-03-28',
-            # notify_email="none",
             groups_id=[(6, 0, [self.csp_admin.id, partner_manager.id])]
         ))
         self.inv_user = self.user_model.with_context(contex).create(dict(

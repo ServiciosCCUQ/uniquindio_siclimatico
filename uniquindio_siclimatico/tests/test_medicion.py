@@ -26,19 +26,19 @@ from openerp.exceptions import AccessError
 _logger = logging.getLogger(__name__)
 
 
-class TestEstacion(TransactionCase):
+class Testmedicion(TransactionCase):
 
     def setUp(self):
-        super(TestEstacion, self).setUp()
-        self.model = self.env['uniquindio.estacion']
+        super(Testmedicion, self).setUp()
+        self.model = self.env['uniquindio.medicion']
+        self.model_ts = self.env['uniquindio.tiposensor']
+        self.model_e = self.env['uniquindio.estacion']
         self.user_model = self.env['res.users']
         self.main_company = self.env.ref('base.main_company')
         partner_manager = self.env.ref('base.group_partner_manager')
         self.csp_admin = self.env.ref('uniquindio_siclimatico.csp_admin')
         self.csp_inve = self.env.ref('uniquindio_siclimatico.csp_investigador')
         self.csp_estacion = self.env.ref('uniquindio_siclimatico.csp_estacion')
-
-        # groups_data = self.res_users.read_group(cr, uid, domain,
 
         # No enviar confirmacion para el reinicio de clave
         contex = {'no_reset_password': True}
@@ -71,73 +71,80 @@ class TestEstacion(TransactionCase):
             groups_id=[(6, 0, [self.csp_estacion.id, partner_manager.id])]
         ))
 
-        self.estacion = self.model.create(
+        self.ts = self.model_ts.create(
+            dict(name="Humedad-Sensor", tipo=2, unidad='%'))
+
+        self.e = self.model_e.create(
             dict(name="BlueStation", state=1, codinterno='blue'))
+
+        estacion = self.e.id
+        tipo = self.ts.id
+
+        self.medicion = self.model.create(
+            dict(estacion_id=estacion, tipo_id=tipo, valor=10, unidad='%'))
 
     def test_crear(self):
 
-        # Validar que SI se pueda crear con el usuario administrador
-        usr = self.admin_user.id
-        self.estacion1 = self.model.sudo(usr).create(
-            dict(name="Estacion1", state=1, codinterno='est1'))
+        estacion = self.e.id
+        tipo = self.ts.id
 
-        # No permitir crear estaciones de parte de un Investigador
+        # Validar que SI se pueda crear con el usuario Estacion
+        usr = self.est_user.id
+        self.medicion1 = self.model.sudo(usr).create(
+            dict(estacion_id=estacion, tipo_id=tipo, valor=20, unidad='%'))
+
+        # No permitir crear sensores de parte de un Investigador
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.estacion2 = self.model.sudo(usr).create(
-                dict(name="Estacion2",
-                     state=1,
-                     codinterno='est2'))
+            self.medicion2 = self.model.sudo(usr).create(
+                dict(estacion_id=estacion, tipo_id=tipo, valor=22, unidad='%'))
 
-        # No permitir crear estaciones de parte de una estacion
+        # No permitir crear sensores de parte de una Administrador
         with self.assertRaises(AccessError):
-            usr = self.est_user.id
-            self.estacion3 = self.model.sudo(usr).create(
-                dict(name="Estacion3",
-                     state=1,
-                     codinterno='est3'))
+            usr = self.admin_user.id
+            self.medicion3 = self.model.sudo(usr).create(
+                dict(estacion_id=estacion, tipo_id=tipo, valor=25, unidad='%'))
 
     def test_modificar(self):
-        nombre_estacion = 'Green Station'
+        valor = 21
+        usr = self.est_user.id
+        self.medicion.sudo(usr).write({'valor': valor})
+        self.assertEqual(self.medicion.valor, valor)
 
-        usr = self.admin_user.id
-        self.estacion.sudo(usr).write({'name': nombre_estacion})
-        self.assertEqual(self.estacion.name, nombre_estacion)
-
-        # No permitir crear estaciones de parte de un Investigador
+        # No permitir crear sensores de parte de un Investigador
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.estacion.sudo(usr).write({'name': nombre_estacion})
+            self.medicion.sudo(usr).write({'valor': valor})
 
-        # No permitir crear estaciones de parte de una estacion
+        # No permitir crear sensores de parte de Administrador
         with self.assertRaises(AccessError):
-            usr = self.est_user.id
-            self.estacion.sudo(usr).write({'name': nombre_estacion})
+            usr = self.admin_user.id
+            self.medicion.sudo(usr).write({'valor': valor})
 
     def test_consultar(self):
 
         usr = self.admin_user.id
-        estaciones_ids = self.model.sudo(usr).search([])
-        self.assertNotEqual(len(estaciones_ids), 0)
+        mediciones_ids = self.model.sudo(usr).search([])
+        self.assertNotEqual(len(mediciones_ids), 0)
 
         usr = self.inv_user.id
-        estaciones_ids = self.model.sudo(usr).search([])
-        self.assertNotEqual(len(estaciones_ids), 0)
+        mediciones_ids = self.model.sudo(usr).search([])
+        self.assertNotEqual(len(mediciones_ids), 0)
 
         usr = self.est_user.id
-        estaciones_ids = self.model.sudo(usr).search([])
-        self.assertNotEqual(len(estaciones_ids), 0)
+        mediciones_ids = self.model.sudo(usr).search([])
+        self.assertNotEqual(len(mediciones_ids), 0)
 
     def test_eliminar(self):
 
         usr = self.admin_user.id
         with self.assertRaises(AccessError):
-            self.estacion.sudo(usr).unlink()
+            self.medicion.sudo(usr).unlink()
 
         with self.assertRaises(AccessError):
             usr = self.inv_user.id
-            self.estacion.sudo(usr).unlink()
+            self.medicion.sudo(usr).unlink()
 
         with self.assertRaises(AccessError):
             usr = self.est_user.id
-            self.estacion.sudo(usr).unlink()
+            self.medicion.sudo(usr).unlink()

@@ -21,3 +21,4 @@
 ##############################################################################
 from . import test_tiposensor
 from . import test_estacion
+from . import test_medicion
