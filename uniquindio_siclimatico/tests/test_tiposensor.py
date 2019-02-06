@@ -56,7 +56,7 @@ class TestTipoSensor(TransactionCase):
             company_id=self.main_company.id,
             login="inv1",
             email="invt1@ceam-csp.me",
-            notify_email='none',
+            # notify_email='none',
             groups_id=[(6, 0, [self.csp_inve.id, partner_manager.id])]
         ))
         self.est_user = self.user_model.with_context(contex).create(dict(
@@ -64,7 +64,7 @@ class TestTipoSensor(TransactionCase):
             company_id=self.main_company.id,
             login="est1",
             email="est1@ceam-csp.me",
-            notify_email='none',
+            # notify_email='none',
             groups_id=[(6, 0, [self.csp_estacion.id, partner_manager.id])]
         ))
 
