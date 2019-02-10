@@ -93,10 +93,11 @@ install:
 script:
   - travis_run_tests
   - git fetch --unshallow #fix : Shallow clone detected, no blame information will be provided.
-  - sonar-scanner
+
 
 after_success:
   - travis_after_tests_success
+  - sonar-scanner  
   - ssh deploy@ceam-csp.me /home/deploy/update.sh
   - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
 
