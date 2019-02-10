@@ -89,9 +89,12 @@ install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
+  - pip install coverage==4.3.4
 
 script:
   - travis_run_tests
+  - coverage erase
+  - coverage xml -o coverage.xml  
   - sonar-scanner
 
 after_success:
