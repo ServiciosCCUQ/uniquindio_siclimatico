@@ -10,6 +10,10 @@ python:
 
 addons:
   ssh_known_hosts: ceam-csp.me
+  sonarcloud:
+    organization: "serviciosccuq"
+    token:
+      secure:  96f3ef4f035e196608a47c34e1da95e37f7f6aa6
   apt:
 #    sources:
 #    Search your sources alias here:
@@ -88,6 +92,7 @@ install:
 
 script:
   - travis_run_tests
+  - sonar-scanner
 
 after_success:
   - travis_after_tests_success
