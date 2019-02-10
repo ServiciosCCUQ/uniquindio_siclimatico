@@ -64,7 +64,7 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TESTS="1" ODOO_REPO="odoo/odoo"
-  - TESTS="1" ODOO_REPO="OCA/OCB" 
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 # either use the two lines above or the two below. Don't change the default if
 # it's not necessary (it is only necessary if modules in your repository can't
 # be installed in the same database. And you get a huge speed penalty in your
@@ -85,11 +85,10 @@ install:
   - openssl aes-256-cbc -k $encrypted_key -in sic.enc -out /tmp/deploy_rsa -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/deploy_rsa
-  - ssh-add /tmp/deploy_rsa 
+  - ssh-add /tmp/deploy_rsa
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install coverage==4.3.4
 
 script:
   - travis_run_tests
@@ -98,7 +97,7 @@ script:
 
 after_success:
   - travis_after_tests_success
-  - ssh deploy@ceam-csp.me /home/deploy/update.sh 
+  - ssh deploy@ceam-csp.me /home/deploy/update.sh
   - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
 
 before_deploy: "echo '### Preparando para Continuous Deployment ###'"
