@@ -94,7 +94,7 @@ install:
 script:
   - travis_run_tests
   - coverage erase
-  - coverage xml -o coverage.xml  
+  - coverage xml
   - sonar-scanner
 
 after_success:
