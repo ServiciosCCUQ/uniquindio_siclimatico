@@ -93,6 +93,7 @@ install:
 
 script:
   - travis_run_tests
+  - git fetch --unshallow
   - sonar-scanner
 
 after_success:
