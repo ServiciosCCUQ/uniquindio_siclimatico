@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
 import logging
-# import json
-# import openerp
-# from openerp import SUPERUSER_ID
 from openerp.addons.web import http
-# from openerp.addons.web.http import request
-# from werkzeug.wrappers import BaseResponse as Response
 
 _logger = logging.getLogger(__name__)
 
