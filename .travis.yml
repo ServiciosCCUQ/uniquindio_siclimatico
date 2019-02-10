@@ -93,7 +93,6 @@ install:
 
 script:
   - travis_run_tests
-  - coverage erase
   - coverage xml
   - sonar-scanner
 
