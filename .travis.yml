@@ -93,7 +93,7 @@ install:
 
 script:
   - travis_run_tests
-  - git fetch --unshallow
+  - git fetch --unshallow #fix : Shallow clone detected, no blame information will be provided.
   - sonar-scanner
 
 after_success:
