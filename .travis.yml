@@ -101,7 +101,13 @@ after_success:
 
 before_deploy: "echo '### Preparando para Continuous Deployment ###'"
 
-jobs:
-  include:
-    - stage: deploy
-      script: ssh deploy@ceam-csp.me /home/deploy/update.sh
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ssh deploy@ceam-csp.me /home/deploy/update.sh
+
+  - provider: script
+    skip_cleanup: true
+    script: ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh    
+
+
