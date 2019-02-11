@@ -4,6 +4,6 @@
     <!-- Acceso desde la barra superior -->
     <menuitem id="sic_menu" name="SIC" sequence="15"/>
     <menuitem id="sic_menu_principal" name="S.I. Climatico" parent="sic_menu"/>
-    <menuitem id="sic_menu_config" name="S.I. Climatico - Configuracion" parent="sic_menu"/>
+    <menuitem id="sic_menu_config" name="S.I. Climatico - Configuración" parent="sic_menu"/>
   </data>
 </odoo>
