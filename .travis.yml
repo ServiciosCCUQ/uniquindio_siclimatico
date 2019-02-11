@@ -98,8 +98,10 @@ script:
 after_success:
   - travis_after_tests_success
   - sonar-scanner # Ejecutar analisis sonar despues de pruebas Odoo-Travis. Evitar Problemas de Covertura incompleta  
-  - ssh deploy@ceam-csp.me /home/deploy/update.sh
-  - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
 
 before_deploy: "echo '### Preparando para Continuous Deployment ###'"
+
+after_deploy:
+  - ssh deploy@ceam-csp.me /home/deploy/update.sh
+  - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
 
