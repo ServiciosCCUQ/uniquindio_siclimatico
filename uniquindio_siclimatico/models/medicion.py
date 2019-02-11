@@ -12,6 +12,6 @@ class Medicion(models.Model):
     tipo_id = fields.Many2one(
         string='Tipo', required=True,
         comodel_name='uniquindio.tiposensor', index=True)
-    valor = fields.Float('Valor', required=True,
+    valor = fields.Float('Valor Estacion', required=True,
                          group_operator="avg", index=True)
     unidad = fields.Char('Unidad Medida', required=True, index=True)
