@@ -101,7 +101,13 @@ after_success:
 
 before_deploy: "echo '### Preparando para Continuous Deployment ###'"
 
-after_success:
-  - ssh deploy@ceam-csp.me /home/deploy/update.sh
-  - ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
-
+deploy:
+  provider: script
+  script: bash ssh deploy@ceam-csp.me /home/deploy/update.sh
+  on:
+    branch: master
+  #Segundo Script    
+  provider: script
+  script: bash ssh deploy@ceam-csp.me sudo /home/deploy/autodeploy.sh
+  on:
+    branch: master
