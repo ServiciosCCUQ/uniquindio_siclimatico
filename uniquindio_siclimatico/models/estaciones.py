@@ -23,4 +23,4 @@ class Estacion(models.Model):
         inverse_name='estacion_id')
 
     _sql_constraints = [('estacion_unique', 'unique(name,codinterno)',
-                         'La estacion ya existe.')]    
+                         'La estacion ya existe.')]
