@@ -19,3 +19,6 @@ class TipoSensor(models.Model):
     tipo = fields.Selection(string='Tipo', required=True,  selection=tipos)
     descripcion = fields.Text('Descripcion', required=False)
     unidad = fields.Char('Unidad de Medica', required=True)
+
+    _sql_constraints = [('tiposensor_unique', 'unique(name,tipo)',
+                         'Ya existe un tipo sensor con este nombre.')]

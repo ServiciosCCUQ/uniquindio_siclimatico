@@ -21,3 +21,6 @@ class Estacion(models.Model):
     sensores_ids = fields.One2many(
         string='Sensores', comodel_name='uniquindio.estacion.sensores',
         inverse_name='estacion_id')
+
+    _sql_constraints = [('estacion_unique', 'unique(name,codinterno)',
+                         'La estacion ya existe.')]    
