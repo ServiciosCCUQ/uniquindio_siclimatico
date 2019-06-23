@@ -27,6 +27,8 @@
 			<field name="arch" type="xml">
 				<form string="Estacion" version="7.0">
 					<header>
+						<button string="OpenWeather" name="openweather_api" type="object"/>
+						<button string="DarkSky" name="darksky_api" type="object"/>
 						<field name="state" widget="statusbar"/>
 					</header>
 					<sheet>

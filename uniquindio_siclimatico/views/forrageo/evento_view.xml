@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="evento_view_filter" model="ir.ui.view">
+			<field name="name">Evento</field>
+			<field name="model">uniquindio.fr.evento</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Evento">
+					<field name="especies"/>
+					<field name="notas"/>
+				</search>
+			</field>
+		</record>
+		<record id="evento_view_tree" model="ir.ui.view">
+			<field name="name">Evento Vista Lista</field>
+			<field name="model">uniquindio.fr.evento</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Evento">
+					<field name="create_date" string="Fecha Creación"/>
+					<field name="especies"/>
+					<field name="notas"/>
+				</tree>
+			</field>
+		</record>
+		<record id="evento_view_form_" model="ir.ui.view">
+			<field name="name">Evento Vista Formulario</field>
+			<field name="model">uniquindio.fr.evento</field>
+			<field name="arch" type="xml">
+				<form string="Evento" version="7.0">
+					<sheet>
+						<group>
+							<field name="create_date" readonly="1" string="Fecha Captura"/>
+						</group>
+						<group>
+							<field name="foto_name" invisible="1"/>
+							<field name="foto" filename="foto_name" widget='image' />
+						</group>
+						<group string="Clasificación Especies">
+							<field name="especie_ids" nolabel="1">
+								<tree editable="top">
+									<field name="familia_id" />
+									<field name="genero_id" />
+									<field name="especie_id" />
+									<field name="individuos" />
+									<field name="notas" />
+								</tree>
+							</field>
+						</group>
+						<group string="Nota General">
+							<field name="notas" nolabel="1" placeholder="Indique una nota general sobre la observación"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="evento_action" model="ir.actions.act_window">
+			<field name="name">Eventos Fotograficos</field>
+			<field name="res_model">uniquindio.fr.evento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem action="evento_action" id="evento_menu" name="Eventos" parent="sic_menu_forrageo"/>
+	</data>
+</odoo>

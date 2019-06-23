@@ -38,10 +38,13 @@
             'security/uniquindio_siclimatico_security.xml',
             'security/ir.model.access.csv',
             'views/sic_menu.xml',
+            'views/forrageo/libacion_view.xml',
+            'views/forrageo/evento_view.xml',
             'views/tiposensor_view.xml',
             'views/estaciones_view.xml',
             'views/medicion_view.xml',
             'report/medicion_report_view.xml',
+            'data/acciones_planificadas.xml'
     ],
     'auto_install': False,
     'installable': True,

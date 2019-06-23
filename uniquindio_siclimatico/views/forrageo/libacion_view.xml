@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="libacion_view_filter" model="ir.ui.view">
+			<field name="name">Libacion</field>
+			<field name="model">uniquindio.fr.libacion</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Libacion">
+					<field name="flor"/>
+					<field name="notas"/>
+				</search>
+			</field>
+		</record>
+		<record id="libacion_view_tree" model="ir.ui.view">
+			<field name="name">Libacion Vista Lista</field>
+			<field name="model">uniquindio.fr.libacion</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Libacion">
+					<field name="create_date"/>
+					<field name="flor"/>
+					<field name="notas"/>
+				</tree>
+			</field>
+		</record>
+		<record id="libacion_view_form_" model="ir.ui.view">
+			<field name="name">Libacion Vista Formulario</field>
+			<field name="model">uniquindio.fr.libacion</field>
+			<field name="arch" type="xml">
+				<form string="Libacion" version="7.0">
+					<sheet>
+						<group>
+							<field name="create_date" readonly="1"/>
+							<field name="flor"/>
+							<field name="notas"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="libacion_action" model="ir.actions.act_window">
+			<field name="name">Libaciónes</field>
+			<field name="res_model">uniquindio.fr.libacion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem action="libacion_action" id="libacion_menu" name="Libaciónes" parent="sic_menu_forrageo"/>
+	</data>
+</odoo>

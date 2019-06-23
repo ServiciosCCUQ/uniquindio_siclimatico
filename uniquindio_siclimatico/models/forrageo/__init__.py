@@ -19,9 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import forrageo
+from . import aves
 
-from . import estaciones
-from . import tiposensor
-from . import sensoresestacion
-from . import medicion
+from . import libacion
+from . import evento
+from . import evento_especie
