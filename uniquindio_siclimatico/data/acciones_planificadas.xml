@@ -21,7 +21,7 @@
             <field name="doall" eval="False" />
             <field name="model">uniquindio.mqqt</field>
             <field name="function">action_start_mqtt</field>
-            <field name="args">()</field>
+            <field name="args">(#)</field>
         </record>        
     </data>
 </odoo>

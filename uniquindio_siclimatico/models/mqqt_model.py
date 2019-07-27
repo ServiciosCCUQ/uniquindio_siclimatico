@@ -24,7 +24,7 @@ class MqttAbstractInterface(models.AbstractModel):
     _name = "iot.mqtt"
     _description = "Provides Mqtt functionalities to another models."
 
-    host = "ceam-csp.me"
+    host = "localhost"
     port = 1883
     ttl = 60
     conect = False
@@ -42,7 +42,7 @@ class MqttAbstractInterface(models.AbstractModel):
             self.controller.push_task('start')
             self.subscribe(topic)
         elif self.conect:
-            _logger.info("INFO: already connect to a mqtt broker!")
+            _logger.info("INFO MQQT: Ya se encuentra conectado al Broker!")
 
     @api.multi
     def publish(self, topic, msg):
