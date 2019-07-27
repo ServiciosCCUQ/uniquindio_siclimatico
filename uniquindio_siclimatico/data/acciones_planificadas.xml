@@ -12,5 +12,16 @@
             <field name="function">comprobar_ws_clima</field>
             <field name="args">()</field>
         </record>
+        <record model="ir.cron" id="sic_mqqt">
+            <field name='name'>Servicio MQQT</field>            
+            <field name='interval_number'>10</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="False" />
+            <field name="model">uniquindio.mqqt</field>
+            <field name="function">action_start_mqtt</field>
+            <field name="args">()</field>
+        </record>        
     </data>
 </odoo>

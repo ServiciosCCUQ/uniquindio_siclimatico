@@ -19,6 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+from . import mqqt_model
+from . import mqqt_uniquindio
+
 from . import forrageo
 
 from . import estaciones
