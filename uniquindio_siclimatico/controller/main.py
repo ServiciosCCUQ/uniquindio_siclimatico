@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
-
-#This controller is taken from Terrabit Solutions module 'Access Control MQTT'
+##############################################################################
+#
+#    Universidad del Quindio
+#    Proyecto para Semillero de Investigacion Fase III - 2019
+#    Gustavo Salgado Ocampo - Fredy Alexander Espana
+#
+# This controller is taken from Terrabit Solutions module 'Access Control MQTT'
 # https://www.odoo.com/apps/modules/11.0/terrabit_access_control_mqtt/
+#
+##############################################################################
 
 import logging
 import time
 import json
 from threading import Thread, Lock
-import threading
 
 try:
-    from queue import Queue, Empty
+    from queue import Queue
 except ImportError:
-    from Queue import Queue, Empty  # pylint: disable=deprecated-module
-
-from openerp.tools.config import config
+    from Queue import Queue  # pylint: disable=deprecated-module
 
 _logger = logging.getLogger(__name__)
 
@@ -62,7 +66,7 @@ class MQTT(Thread):
             except Exception as e:
                 _logger.error('Error: %s' % str(e))
 
-    # The callback for when the client receives a CONNACK response from the server.
+    # The callback for when the client receives a CONNACK response from the ser
     def on_connect(self, client, userdata, flags, rc):
         _logger.info("Connected with result code " + str(rc))
 
@@ -70,7 +74,8 @@ class MQTT(Thread):
     def on_message(self, client, userdata, msg):
         _logger(u"INFO: llegó un mensaje!")
         _logger.info("Mensaje: " + msg.topic + " " + str(msg.payload))
-    #data es un diccionario que tiene el host, el puerto y el ttl
+
+    # data es un diccionario que tiene el host, el puerto y el ttl
     def connect(self, data):
         self.client.connect(data['host'], data['port'], data['ttl'])
 
@@ -83,13 +88,12 @@ class MQTT(Thread):
         _logger.info('MQTT Interface Stop')
 
     def subscribe(self, topic):
-
         _logger.info('MQTT subscribe %s' % topic)
         self.client.subscribe(topic)
 
     def publish(self, topic,  data):
-
         _logger.info('MQTT publish %s' % topic)
         self.client.publish(topic, str(json.dumps(data)).strip().strip('"'))
+
 
 interface = MQTT()
