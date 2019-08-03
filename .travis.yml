@@ -7,6 +7,8 @@ cache:
 
 python:
   - "2.7"
+install:
+  - pip install paho-mqtt
 
 addons:
   postgresql: "9.5"
@@ -26,7 +28,6 @@ addons:
       - python-serial
       - python-yaml
       - python-ldap
-      - paho-mqtt
 #     Search your packages here:
 #       https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
 #     For wkhtmltopdf, see the env section below
