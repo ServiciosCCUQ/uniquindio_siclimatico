@@ -26,6 +26,7 @@ addons:
       - python-serial
       - python-yaml
       - python-ldap
+      - paho-mqtt
 #     Search your packages here:
 #       https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
 #     For wkhtmltopdf, see the env section below

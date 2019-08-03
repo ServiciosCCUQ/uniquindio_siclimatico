@@ -2,6 +2,11 @@
 # -*- encoding: utf-8 -*-
 from openerp import models, fields
 
+gen = [
+    ('m', 'Macho'),
+    ('h', u'Hembra'),
+]
+
 
 class Libacion(models.Model):
     _name = 'uniquindio.fr.evento'
@@ -13,3 +18,4 @@ class Libacion(models.Model):
     especie_ids = fields.One2many(
         string='Especies', comodel_name='uniquindio.fr.evento.especie',
         inverse_name='evento_id', required=False)
+    genero = fields.Selection(string='Genero', required=True, selection=gen)

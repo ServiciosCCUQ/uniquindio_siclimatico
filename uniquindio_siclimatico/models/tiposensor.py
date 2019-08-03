@@ -6,12 +6,15 @@ tipos = [
     (1, 'Temperatura'),
     (2, u'Humedad'),
     (3, 'Velocidad del Viento'),
-    (4, u'Radiación UltraVioleta'),
+    (4, u'Radiación Ultravioleta'),
     (5, u'Precipitación'),
-    (6, u'CO2'),
-    (7, u'Presión Admosferica'),
+    (6, u'Dioxido de Carbono'),
+    (7, u'Presión Admosférica'),
     (8, u'Dirección del Viento'),
     (9, u'Ozono'),
+    (10, u'Presión Barometrica'),
+    (11, u'Velocidad Rafaja Viento'),
+    (12, u'Compuestos Orgánicos Volátiles'),
 ]
 
 
