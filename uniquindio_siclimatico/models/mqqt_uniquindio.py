@@ -67,6 +67,18 @@ class Mqqt(models.Model):
             co2 = json_clima.get('co2') or ''
             voc = json_clima.get('voc') or ''
 
+            _logger.info('dir_viento %s', dir_viento)
+            _logger.info('vel1_viento %s', vel1_viento)
+            _logger.info('vel5_viento %s', vel5_viento)
+            _logger.info('lluvia1 %s', lluvia1)
+            _logger.info('lluvia24 %s', lluvia24)
+            _logger.info('temp %s', temp)
+            _logger.info('hum %s', hum)
+            _logger.info('pres_adm %s', pres_adm)
+            _logger.info('co2 %s', co2)
+            _logger.info('voc %s', voc)
+
+            '''    
             info_sensores.append(estacion.diccionario(
                 estacion.id, 'dir_viento_generic', dir_viento))
             info_sensores.append(estacion.diccionario(
@@ -90,11 +102,13 @@ class Mqqt(models.Model):
             if voc:
                 info_sensores.append(estacion.diccionario(
                     estacion.id, 'voc', voc))
-
+            '''    
             _logger.info('Data persistir %s', info_sensores)
-
+            _logger.info('mediciones_model %s', mediciones_model)
             # for info in info_sensores:
             #    mediciones_model.create(info)
-
+            
         except Exception as e:
-            _logger.info('json invalido = %s ', e)
+            _logger.info('Error General = %s ', e)
+        except ValueError as e:
+            _logger.info('Error leyendo json %s', e)
