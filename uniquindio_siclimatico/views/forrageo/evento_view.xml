@@ -42,7 +42,7 @@
 									<field name="genero_id" />
 									<field name="especie_id" />
 									<field name="individuos" />
-									<field name="genero" />
+									<!--<field name="genero" />-->
 									<field name="notas" />
 								</tree>
 							</field>
