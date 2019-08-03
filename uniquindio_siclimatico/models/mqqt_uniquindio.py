@@ -35,6 +35,14 @@ class Mqqt(models.Model):
     @api.multi
     def recibir_clima(self, entrada):
         try:
+
+            if not entrada:
+                _logger.info('Input Vacio')
+                return False
+
+            # Fix - comillas dobles
+            entrada = entrada.replace('"', "'")
+
             json_clima = json.loads(entrada.decode('utf-8'))
 
             if not json_clima:
