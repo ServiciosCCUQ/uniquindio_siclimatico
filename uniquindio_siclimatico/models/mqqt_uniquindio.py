@@ -41,9 +41,10 @@ class Mqqt(models.Model):
                 return False
 
             # Fix - comillas dobles
-            entrada = entrada.replace('"', "'")
+            entrada_raw = entrada.replace('"', "'")
+            _logger.info('entrada_raw %s', entrada_raw)
 
-            json_clima = json.loads(entrada.decode('utf-8'))
+            json_clima = json.loads(entrada_raw.decode('utf-8'))
 
             if not json_clima:
                 _logger.info('Json esta vacio!')
