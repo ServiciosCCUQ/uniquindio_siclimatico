@@ -78,31 +78,6 @@ class Mqqt(models.Model):
             _logger.info('co2 %s', co2)
             _logger.info('voc %s', voc)
 
-            '''
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'dir_viento_generic', dir_viento))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'vel_viento_generic', vel1_viento))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'vel_viento_5', vel5_viento))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'precipitaciones_generic', lluvia1))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'precipitaciones_24', lluvia24))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'temp_generic', temp))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'humedad_generic', hum))
-            info_sensores.append(estacion.diccionario(
-                estacion.id, 'p_admosferica_generic', pres_adm))
-
-            if co2:
-                info_sensores.append(estacion.diccionario(
-                    estacion.id, 'eco2', co2))
-            if voc:
-                info_sensores.append(estacion.diccionario(
-                    estacion.id, 'voc', voc))
-            '''
             _logger.info('Data persistir %s', info_sensores)
             _logger.info('mediciones_modelo %s', mediciones_model)
 
