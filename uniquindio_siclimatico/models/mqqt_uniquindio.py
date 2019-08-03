@@ -91,8 +91,10 @@ class Mqqt(models.Model):
                 info_sensores.append(estacion.diccionario(
                     estacion.id, 'voc', voc))
 
-            for info in info_sensores:
-                mediciones_model.create(info)
+            _logger.info('Data persistir %s', info_sensores)
+
+            # for info in info_sensores:
+            #    mediciones_model.create(info)
 
         except Exception as e:
             _logger.info('json invalido = %s ', e)
