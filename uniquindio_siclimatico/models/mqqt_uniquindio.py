@@ -104,7 +104,7 @@ class Mqqt(models.Model):
                     estacion.id, 'voc', voc))
             '''
             _logger.info('Data persistir %s', info_sensores)
-            _logger.info('mediciones_model %s', mediciones_model)
+            _logger.info('mediciones_modelo %s', mediciones_model)
 
             # for info in info_sensores:
             #    mediciones_model.create(info)
