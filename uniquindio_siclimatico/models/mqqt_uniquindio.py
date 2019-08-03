@@ -49,23 +49,49 @@ class Mqqt(models.Model):
 
             estacion = estacion[0]
 
-            # mediciones_model = self.env['uniquindio.medicion']
+            mediciones_model = self.env['uniquindio.medicion']
 
             info_sensores = []
 
+            # fecha = json_clima.get('fecha')    
             dir_viento = json_clima.get('dir')
-            # vel1_viento = json_clima.get('speed1')
-            # vel5_viento = json_clima.get('speed5')
-            # lluvia1 = json_clima.get('hour1')
-            # lluvia24 = json_clima.get('hour24')
-            # temp = json_clima.get('temp')
-            # hum = json_clima.get('hum')
-            # pres_adm = json_clima.get('bp')
-            # co2 = json_clima.get('co2')
-            # voc = json_clima.get('voc')
+            vel1_viento = json_clima.get('speed1')
+            vel5_viento = json_clima.get('speed5')
+            lluvia1 = json_clima.get('hour1')
+            lluvia24 = json_clima.get('hour24')
+            temp = json_clima.get('temp')
+            hum = json_clima.get('hum')
+            pres_adm = json_clima.get('bp')
+            co2 = json_clima.get('co2') or ''
+            voc = json_clima.get('voc') or ''
 
             info_sensores.append(estacion.diccionario(
                 estacion.id, 'dir_viento_generic', dir_viento))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'vel_viento_generic', vel1_viento))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'vel_viento_5', vel5_viento))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'precipitaciones_generic', lluvia1))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'precipitaciones_24', lluvia24))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'temp_generic', temp))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'humedad_generic', hum))
+            info_sensores.append(estacion.diccionario(
+                estacion.id, 'p_admosferica_generic', pres_adm))
+
+            if co2:
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'eco2', co2))
+            if voc:
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'voc', voc))
+
+            for info in info_sensores:
+                mediciones_model.create(info)
+
 
         except Exception as e:
             _logger.info('json invalido = %s ', e)

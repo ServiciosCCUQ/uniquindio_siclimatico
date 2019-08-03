@@ -9,7 +9,7 @@ tipos = [
     (4, u'Radiación Ultravioleta'),
     (5, u'Precipitación'),
     (6, u'Dioxido de Carbono'),
-    (7, u'Presión Admosférica'),
+    (7, u'Presión Atmosférica'),
     (8, u'Dirección del Viento'),
     (9, u'Ozono'),
     (10, u'Presión Barometrica'),
