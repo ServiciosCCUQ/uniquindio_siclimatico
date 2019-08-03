@@ -78,7 +78,7 @@ class Mqqt(models.Model):
             _logger.info('co2 %s', co2)
             _logger.info('voc %s', voc)
 
-            '''    
+            '''
             info_sensores.append(estacion.diccionario(
                 estacion.id, 'dir_viento_generic', dir_viento))
             info_sensores.append(estacion.diccionario(
@@ -102,12 +102,13 @@ class Mqqt(models.Model):
             if voc:
                 info_sensores.append(estacion.diccionario(
                     estacion.id, 'voc', voc))
-            '''    
+            '''
             _logger.info('Data persistir %s', info_sensores)
             _logger.info('mediciones_model %s', mediciones_model)
+
             # for info in info_sensores:
             #    mediciones_model.create(info)
-            
+
         except Exception as e:
             _logger.info('Error General = %s ', e)
         except ValueError as e:
