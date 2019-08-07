@@ -44,7 +44,7 @@ class Mqqt(models.Model):
             entrada_raw = entrada.replace('"', "'")
             _logger.info('entrada_raw %s', entrada_raw)
 
-            json_clima = json.loads(entrada_raw.decode('utf-8'))
+            json_clima = json.loads(entrada)
 
             if not json_clima:
                 _logger.info('Json esta vacio!')
