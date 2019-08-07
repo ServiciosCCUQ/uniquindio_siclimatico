@@ -54,7 +54,10 @@ class Mqqt(models.Model):
                 return False
 
             estacion_model = self.env['uniquindio.estacion']
-            _logger.info('Modelo %s ', estacion_model)
+            busqueda = [('codinterno', '=', 'ladivisa')]
+            estacion = estacion_model.search(busqueda)
+
+            _logger.info('ESTACION %s', estacion)
 
             dir_viento = json_clima.get('dir')
             vel1_viento = json_clima.get('speed1')
