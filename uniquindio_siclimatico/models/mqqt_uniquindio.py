@@ -54,8 +54,7 @@ class Mqqt(models.Model):
                 return False
 
             estacion_model = self.env['uniquindio.estacion']
-            busqueda = [('codinterno', '=', 'ladivisa')]
-            estacion = estacion_model.search(busqueda)
+            estacion = estacion_model.search([('codinterno', '=', 'divisa')])
 
             _logger.info('ESTACION %s', estacion)
 
