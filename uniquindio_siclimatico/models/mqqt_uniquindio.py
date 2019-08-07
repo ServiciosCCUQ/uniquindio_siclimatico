@@ -88,6 +88,8 @@ class Mqqt(models.Model):
                 # for info in info_sensores:
                 #    mediciones_model.create(info)
 
+                new_cr.close()
+                
             except Exception as e:
                 _logger.info('Error General = %s ', e)
             except ValueError as e:
