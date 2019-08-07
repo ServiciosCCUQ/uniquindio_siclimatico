@@ -41,10 +41,13 @@ class Mqqt(models.Model):
                 return False
 
             # Fix - comillas dobles
-            entrada_raw = entrada.replace('"', "'")
-            _logger.info('entrada_raw %s', entrada_raw)
+            # entrada_raw = entrada.replace('"', "'")
+            # _logger.info('entrada_raw %s', entrada_raw)
 
             json_clima = json.loads(entrada)
+
+            _logger.info('json_clima = %s', json_clima)
+            _logger.info('type json_clima = %s', type(json_clima))            
 
             if not json_clima:
                 _logger.info('Json esta vacio!')
@@ -63,9 +66,6 @@ class Mqqt(models.Model):
             mediciones_model = self.env['uniquindio.medicion']
 
             info_sensores = []
-
-            _logger.info('json_clima = %s', json_clima)
-            _logger.info('type json_clima = %s', type(json_clima))
 
             # fecha = json_clima.get('fecha')
             dir_viento = json_clima.get('dir')
