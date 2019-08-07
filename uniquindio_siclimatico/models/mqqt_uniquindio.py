@@ -78,16 +78,29 @@ class Mqqt(models.Model):
                 co2 = json_clima.get('co2') or ''
                 voc = json_clima.get('voc') or ''
 
-                _logger.info('dir_viento %s', dir_viento)
-                _logger.info('vel1_viento %s', vel1_viento)
-                _logger.info('vel5_viento %s', vel5_viento)
-                _logger.info('lluvia1 %s', lluvia1)
-                _logger.info('lluvia24 %s', lluvia24)
-                _logger.info('temp %s', temp)
-                _logger.info('hum %s', hum)
-                _logger.info('pres_adm %s', pres_adm)
-                _logger.info('co2 %s', co2)
-                _logger.info('voc %s', voc)
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'dir_viento_generic', dir_viento))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'vel_viento_generic', vel1_viento))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'vel_viento_5', vel5_viento))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'precipitaciones_generic', lluvia1))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'precipitaciones_24', lluvia24))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'temp_generic', temp))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'humedad_generic', hum))
+                info_sensores.append(estacion.diccionario(
+                    estacion.id, 'p_admosferica_generic', pres_adm))
+
+                if co2:
+                    info_sensores.append(estacion.diccionario(
+                        estacion.id, 'eco2', co2))
+                if voc:
+                    info_sensores.append(estacion.diccionario(
+                        estacion.id, 'voc', voc))
 
                 _logger.info('info_sensores %s', info_sensores)
                 _logger.info('mediciones_model %s', mediciones_model)
