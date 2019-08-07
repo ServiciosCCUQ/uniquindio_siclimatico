@@ -49,6 +49,10 @@ class Mqqt(models.Model):
             _logger.info('json_clima = %s', json_clima)
             _logger.info('type json_clima = %s', type(json_clima))
 
+            dir_viento = json_clima.get('dir')
+
+            _logger.info('dir_viento %s', dir_viento)
+
             # for info in info_sensores:
             #    mediciones_model.create(info)
 
