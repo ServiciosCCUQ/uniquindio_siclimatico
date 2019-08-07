@@ -14,6 +14,7 @@ import logging
 import json
 # from openerp import models, fields , api
 from openerp import models, api
+# from openerp.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
 
@@ -34,56 +35,60 @@ class Mqqt(models.Model):
 
     @api.multi
     def recibir_clima(self, entrada):
-        try:
+        with api.Environment.manage():
+            new_cr = self.pool.cursor()
+            self = self.with_env(self.env(cr=new_cr))
 
-            if not entrada:
-                _logger.info('Input Vacio')
-                return False
+            try:
+                if not entrada:
+                    _logger.info('Input Vacio')
+                    return False
 
-            # Fix - comillas dobles
-            # entrada_raw = entrada.replace('"', "'")
-            # _logger.info('entrada_raw %s', entrada_raw)
+                # Fix - comillas dobles
+                # entrada_raw = entrada.replace('"', "'")
+                # _logger.info('entrada_raw %s', entrada_raw)
 
-            json_clima = json.loads(entrada)
+                json_clima = json.loads(entrada)
 
-            _logger.info('json_clima = %s', json_clima)
-            _logger.info('type json_clima = %s', type(json_clima))
+                _logger.info('json_clima = %s', json_clima)
+                _logger.info('type json_clima = %s', type(json_clima))
 
-            if not json_clima:
-                _logger.info('Json esta vacio!')
-                return False
+                if not json_clima:
+                    _logger.info('Json esta vacio!')
+                    return False
 
-            estacion_model = self.env['uniquindio.estacion']
-            estacion = estacion_model.search([('codinterno', '=', 'divisa')])
+                estacion_model = self.env['uniquindio.estacion']
+                busqueda = [('codinterno', '=', 'divisa')]
+                estacion = estacion_model.search(busqueda)
 
-            _logger.info('ESTACION %s', estacion)
+                _logger.info('ESTACION %s', estacion)
 
-            dir_viento = json_clima.get('dir')
-            vel1_viento = json_clima.get('speed1')
-            vel5_viento = json_clima.get('speed5')
-            lluvia1 = json_clima.get('hour1')
-            lluvia24 = json_clima.get('hour24')
-            temp = json_clima.get('temp')
-            hum = json_clima.get('hum')
-            pres_adm = json_clima.get('bp')
-            co2 = json_clima.get('co2') or ''
-            voc = json_clima.get('voc') or ''
+                dir_viento = json_clima.get('dir')
+                vel1_viento = json_clima.get('speed1')
+                vel5_viento = json_clima.get('speed5')
+                lluvia1 = json_clima.get('hour1')
+                lluvia24 = json_clima.get('hour24')
+                temp = json_clima.get('temp')
+                hum = json_clima.get('hum')
+                pres_adm = json_clima.get('bp')
+                co2 = json_clima.get('co2') or ''
+                voc = json_clima.get('voc') or ''
 
-            _logger.info('dir_viento %s', dir_viento)
-            _logger.info('vel1_viento %s', vel1_viento)
-            _logger.info('vel5_viento %s', vel5_viento)
-            _logger.info('lluvia1 %s', lluvia1)
-            _logger.info('lluvia24 %s', lluvia24)
-            _logger.info('temp %s', temp)
-            _logger.info('hum %s', hum)
-            _logger.info('pres_adm %s', pres_adm)
-            _logger.info('co2 %s', co2)
-            _logger.info('voc %s', voc)
+                _logger.info('dir_viento %s', dir_viento)
+                _logger.info('vel1_viento %s', vel1_viento)
+                _logger.info('vel5_viento %s', vel5_viento)
+                _logger.info('lluvia1 %s', lluvia1)
+                _logger.info('lluvia24 %s', lluvia24)
+                _logger.info('temp %s', temp)
+                _logger.info('hum %s', hum)
+                _logger.info('pres_adm %s', pres_adm)
+                _logger.info('co2 %s', co2)
+                _logger.info('voc %s', voc)
 
-            # for info in info_sensores:
-            #    mediciones_model.create(info)
+                # for info in info_sensores:
+                #    mediciones_model.create(info)
 
-        except Exception as e:
-            _logger.info('Error General = %s ', e)
-        except ValueError as e:
-            _logger.info('Error leyendo json %s', e)
+            except Exception as e:
+                _logger.info('Error General = %s ', e)
+            except ValueError as e:
+                _logger.info('Error leyendo json %s', e)
