@@ -105,6 +105,7 @@ class Mqqt(models.Model):
                 for info in info_sensores:
                     mediciones_model.create(info)
 
+                new_cr.commit()
                 new_cr.close()
             except Exception as e:
                 self._cr.rollback()
