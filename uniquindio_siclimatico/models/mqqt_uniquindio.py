@@ -105,11 +105,15 @@ class Mqqt(models.Model):
                 _logger.info('info_sensores %s', info_sensores)
                 _logger.info('mediciones_model %s', mediciones_model)
 
-                # for info in info_sensores:
-                #    mediciones_model.create(info)
+                for info in info_sensores:
+                    mediciones_model.create(info)
 
                 new_cr.close()
             except Exception as e:
+                self._cr.rollback()
+                self._cr.close()
                 _logger.info('Error General = %s ', e)
             except ValueError as e:
+                self._cr.rollback()
+                self._cr.close()
                 _logger.info('Error leyendo json %s', e)
