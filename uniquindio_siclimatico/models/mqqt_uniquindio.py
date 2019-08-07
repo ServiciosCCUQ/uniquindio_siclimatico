@@ -61,7 +61,11 @@ class Mqqt(models.Model):
                 busqueda = [('codinterno', '=', 'divisa')]
                 estacion = estacion_model.search(busqueda)
 
-                _logger.info('ESTACION %s', estacion)
+                estacion = estacion[0]
+
+                mediciones_model = self.env['uniquindio.medicion']
+
+                info_sensores = []
 
                 dir_viento = json_clima.get('dir')
                 vel1_viento = json_clima.get('speed1')
@@ -84,6 +88,9 @@ class Mqqt(models.Model):
                 _logger.info('pres_adm %s', pres_adm)
                 _logger.info('co2 %s', co2)
                 _logger.info('voc %s', voc)
+
+                _logger.info('info_sensores %s', info_sensores)
+                _logger.info('mediciones_model %s', mediciones_model)
 
                 # for info in info_sensores:
                 #    mediciones_model.create(info)
