@@ -47,7 +47,7 @@ class Mqqt(models.Model):
             json_clima = json.loads(entrada)
 
             _logger.info('json_clima = %s', json_clima)
-            _logger.info('type json_clima = %s', type(json_clima))            
+            _logger.info('type json_clima = %s', type(json_clima))
 
             if not json_clima:
                 _logger.info('Json esta vacio!')
