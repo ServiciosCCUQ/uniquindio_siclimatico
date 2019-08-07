@@ -102,9 +102,6 @@ class Mqqt(models.Model):
                     info_sensores.append(estacion.diccionario(
                         estacion.id, 'voc', voc))
 
-                _logger.info('info_sensores %s', info_sensores)
-                _logger.info('mediciones_model %s', mediciones_model)
-
                 for info in info_sensores:
                     mediciones_model.create(info)
 
