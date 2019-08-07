@@ -49,28 +49,6 @@ class Mqqt(models.Model):
             _logger.info('json_clima = %s', json_clima)
             _logger.info('type json_clima = %s', type(json_clima))
 
-            if not json_clima:
-                _logger.info('Json esta vacio!')
-                return False
-
-            estacion_model = self.env['uniquindio.estacion']
-            busqueda_estacion = [('codinterno', '=', 'ladivisa')]
-            estacion = estacion_model.search(busqueda_estacion)
-
-            if not estacion:
-                _logger.info('No se encontro estacion [ladivisa]')
-                return False
-
-            estacion = estacion[0]
-
-            mediciones_model = self.env['uniquindio.medicion']
-
-            info_sensores = []
-
-            # fecha = json_clima.get('fecha')
-            _logger.info('Data persistir %s', info_sensores)
-            _logger.info('mediciones_modelo %s', mediciones_model)
-
             # for info in info_sensores:
             #    mediciones_model.create(info)
 
