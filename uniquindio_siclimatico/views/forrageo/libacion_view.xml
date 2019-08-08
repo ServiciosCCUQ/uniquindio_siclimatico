@@ -16,7 +16,7 @@
 			<field name="model">uniquindio.fr.libacion</field>
 			<field name="arch" type="xml">
 				<tree string="Lista Libacion">
-					<field name="create_date"/>
+					<field name="fecha"/>
 					<field name="flor"/>
 					<field name="notas"/>
 				</tree>
@@ -29,7 +29,8 @@
 				<form string="Libacion" version="7.0">
 					<sheet>
 						<group>
-							<field name="create_date" readonly="1"/>
+							<field name="create_date" readonly="1" string="Fecha Ingreso Sistema"/>
+							<field name="fecha" readonly="1"/>
 							<field name="flor"/>
 							<field name="notas"/>
 						</group>

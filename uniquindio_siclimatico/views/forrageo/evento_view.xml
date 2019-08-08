@@ -29,7 +29,8 @@
 				<form string="Evento" version="7.0">
 					<sheet>
 						<group>
-							<field name="create_date" readonly="1" string="Fecha Captura"/>
+							<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
+							<field name="fecha"/>
 						</group>
 						<group>
 							<field name="foto_name" invisible="1"/>
@@ -42,7 +43,7 @@
 									<field name="genero_id" />
 									<field name="especie_id" />
 									<field name="individuos" />
-									<!--<field name="genero" />-->
+									<field name="genero" />
 									<field name="notas" />
 								</tree>
 							</field>
