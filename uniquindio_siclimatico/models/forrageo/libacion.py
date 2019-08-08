@@ -7,5 +7,5 @@ class Libacion(models.Model):
     _name = 'uniquindio.fr.libacion'
 
     flor = fields.Integer('No. Flor', required=True)
-    fecha = fields.Datetime(u'Fecha Libacion')
+    fecha = fields.Datetime(u'Fecha Libación')
     notas = fields.Text('Notas', required=False)
