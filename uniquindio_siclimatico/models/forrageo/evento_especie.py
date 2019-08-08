@@ -2,6 +2,11 @@
 # -*- encoding: utf-8 -*-
 from openerp import models, fields
 
+gen = [
+    ('m', 'Macho'),
+    ('h', u'Hembra'),
+]
+
 
 class EventoEspecie(models.Model):
     _name = 'uniquindio.fr.evento.especie'
@@ -19,4 +24,5 @@ class EventoEspecie(models.Model):
         string='Especie', required=True,
         comodel_name='uniquindio.fr.especie', index=True)
     individuos = fields.Integer('No. Individos', required=True)
+    genero = fields.Selection(string='Genero', required=True, selection=gen)
     notas = fields.Text('Notas', required=False)

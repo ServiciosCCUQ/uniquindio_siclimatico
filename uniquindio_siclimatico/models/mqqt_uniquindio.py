@@ -32,6 +32,13 @@ class Mqqt(models.Model):
         _logger.info('msg.payload %s ', msg.payload)
         if msg.topic == 'clima':
             self.recibir_clima(msg.payload)
+        if msg.topoc == 'libacion':
+            self.recibir_libacion(msg.payload)
+
+    @api.multi
+    def recibir_libacion(self, entrada):
+        _logger.info('Recibir Lib %s', entrada)
+        return True
 
     @api.multi
     def recibir_clima(self, entrada):

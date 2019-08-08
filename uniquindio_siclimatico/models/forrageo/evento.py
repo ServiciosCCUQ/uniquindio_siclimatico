@@ -2,20 +2,15 @@
 # -*- encoding: utf-8 -*-
 from openerp import models, fields
 
-gen = [
-    ('m', 'Macho'),
-    ('h', u'Hembra'),
-]
 
-
-class Libacion(models.Model):
+class Evento(models.Model):
     _name = 'uniquindio.fr.evento'
 
     especies = fields.Integer('No. Individuos', required=False)
+    fecha = fields.Datetime(u'Fecha Evento')
     notas = fields.Text('Notas', required=False)
     foto_name = fields.Char('Nombre Archivo')
     foto = fields.Binary('Fotografia')
     especie_ids = fields.One2many(
         string='Especies', comodel_name='uniquindio.fr.evento.especie',
         inverse_name='evento_id', required=False)
-    genero = fields.Selection(string='Genero', required=True, selection=gen)
