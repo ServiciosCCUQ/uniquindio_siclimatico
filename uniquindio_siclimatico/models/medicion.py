@@ -15,3 +15,4 @@ class Medicion(models.Model):
     valor = fields.Float('Valor', required=True,
                          group_operator="avg", index=True)
     unidad = fields.Char('Unidad Medida', required=True, index=True)
+    fecha = fields.Datetime(u'Fecha Libacion')
