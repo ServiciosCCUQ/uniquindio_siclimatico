@@ -173,9 +173,11 @@ class Estacion(models.Model):
         return sensor_id
 
     @api.multi
-    def diccionario(self, estacion_id, tipo, valor):
+    def diccionario(self, estacion_id, tipo, valor, fecha=None):
+        if not fecha:
+            fecha = fields.datetime.now()
         tipo_id = self.tipo_sensor(tipo).id
         unidad = self.tipo_sensor(tipo).unidad
         vals = {'estacion_id': estacion_id, 'tipo_id': tipo_id,
-                'valor': valor, 'unidad':  unidad}
+                'valor': valor, 'unidad':  unidad, 'fecha': fecha}
         return vals
