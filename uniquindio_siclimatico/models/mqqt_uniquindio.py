@@ -89,26 +89,26 @@ class Mqqt(models.Model):
                 voc = json_clima.get('voc') or ''
 
                 fecha = datetime.strptime(fecha_raw, "%Y-%m-%dT%H:%M:%S")
-                fecha = fecha.strftime("%Y-%m-%d %H:%M:%S")
+                f = fecha.strftime("%Y-%m-%d %H:%M:%S")
 
                 _logger.info('Fecha de captura %s', fecha)
 
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'dir_viento_generic', dir_viento))
+                    estacion.id, 'dir_viento_generic', dir_viento, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'vel_viento_generic', vel1_viento))
+                    estacion.id, 'vel_viento_generic', vel1_viento, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'vel_viento_5', vel5_viento))
+                    estacion.id, 'vel_viento_5', vel5_viento, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'precipitaciones_generic', lluvia1))
+                    estacion.id, 'precipitaciones_generic', lluvia1, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'precipitaciones_24', lluvia24))
+                    estacion.id, 'precipitaciones_24', lluvia24, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'temp_generic', temp))
+                    estacion.id, 'temp_generic', temp, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'humedad_generic', hum))
+                    estacion.id, 'humedad_generic', hum, fecha=f))
                 info_sensores.append(estacion.diccionario(
-                    estacion.id, 'p_admosferica_generic', pres_adm))
+                    estacion.id, 'p_admosferica_generic', pres_adm, fecha=f))
 
                 if co2:
                     info_sensores.append(estacion.diccionario(
