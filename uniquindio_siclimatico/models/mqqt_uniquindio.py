@@ -10,10 +10,12 @@
 # https://apps.odoo.com/apps/modules/11.0/mqtt_abstract_interface/
 #
 ##############################################################################
+from datetime import datetime
 import logging
 import json
 # from openerp import models, fields , api
 from openerp import models, api
+
 # from openerp.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
@@ -74,6 +76,7 @@ class Mqqt(models.Model):
 
                 info_sensores = []
 
+                fecha_raw = json_clima.get('fecha')
                 dir_viento = json_clima.get('dir')
                 vel1_viento = json_clima.get('speed1')
                 vel5_viento = json_clima.get('speed5')
@@ -84,6 +87,11 @@ class Mqqt(models.Model):
                 pres_adm = json_clima.get('bp')
                 co2 = json_clima.get('co2') or ''
                 voc = json_clima.get('voc') or ''
+
+                fecha = datetime.strptime(fecha_raw, "%Y-%m-%dT%H:%M:%S")
+                fecha = fecha.strftime("%Y-%m-%d %H:%M:%S")
+
+                _logger.info('Fecha de captura %s', fecha)
 
                 info_sensores.append(estacion.diccionario(
                     estacion.id, 'dir_viento_generic', dir_viento))
