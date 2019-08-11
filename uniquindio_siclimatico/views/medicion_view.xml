@@ -51,6 +51,7 @@
 				<form string="Medicion" version="7.0">
 					<sheet>
 						<group>
+							<field name="fecha" />
 							<field name="estacion_id"/>
 							<field name="tipo_id"/>
 							<field name="valor"/>
