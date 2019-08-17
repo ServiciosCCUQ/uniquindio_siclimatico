@@ -88,7 +88,7 @@ class Mqqt(models.Model):
                 co2 = json_clima.get('co2') or ''
                 voc = json_clima.get('voc') or ''
 
-                fecha = datetime.strptime(fecha_raw, "%Y-%m-%dT%H:%M:%S")
+                fecha = datetime.strptime(fecha_raw, "%Y-%m-%d %H:%M:%S")
                 f = fecha.strftime("%Y-%m-%d %H:%M:%S")
 
                 _logger.info('Fecha de captura %s', fecha)
