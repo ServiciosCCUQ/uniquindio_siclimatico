@@ -36,8 +36,34 @@ class Mqqt(models.Model):
 
     @api.multi
     def recibir_libacion(self, entrada):
-        _logger.info('Recibir Lib %s', entrada)
-        return True
+        with api.Environment.manage():
+            new_cr = self.pool.cursor()
+            self = self.with_env(self.env(cr=new_cr))
+            try:
+                if not entrada:
+                    _logger.info('[Clima] Input Vacio')
+                    return False
+
+                json_libacion = json.loads(entrada)
+                flor = json_libacion.get('flor')
+                fecha = json_libacion.get('fecha')
+                fecha = datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S")
+                f = fecha.strftime("%Y-%m-%d %H:%M:%S")
+
+                libacion_model = self.env['uniquindio.fr.libacion']
+                vals = {'flor': flor, 'fecha': f}
+                libacion_model.create(vals)
+
+                new_cr.commit()
+                new_cr.close()
+            except Exception as e:
+                self._cr.rollback()
+                self._cr.close()
+                _logger.info('Error General Libaciones = %s ', e)
+            except ValueError as e:
+                self._cr.rollback()
+                self._cr.close()
+                _logger.info('Error leyendo json Libacion %s', e)
 
     @api.multi
     def recibir_clima(self, entrada):
@@ -47,12 +73,8 @@ class Mqqt(models.Model):
 
             try:
                 if not entrada:
-                    _logger.info('Input Vacio')
+                    _logger.info('[Clima] Input Vacio')
                     return False
-
-                # Fix - comillas dobles
-                # entrada_raw = entrada.replace('"', "'")
-                # _logger.info('entrada_raw %s', entrada_raw)
 
                 json_clima = json.loads(entrada)
 
