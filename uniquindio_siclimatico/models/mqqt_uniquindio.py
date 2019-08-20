@@ -10,7 +10,7 @@
 # https://apps.odoo.com/apps/modules/11.0/mqtt_abstract_interface/
 #
 ##############################################################################
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 import json
 # from openerp import models, fields , api
@@ -86,6 +86,8 @@ class Mqqt(models.Model):
                 voc = json_clima.get('voc') or ''
 
                 fecha = datetime.strptime(fecha_raw, "%Y-%m-%d %H:%M:%S")
+                # Ajuste a UTC
+                fecha = fecha + timedelta(hours=5)
                 f = fecha.strftime("%Y-%m-%d %H:%M:%S")
 
                 _logger.info('Fecha de captura %s', fecha)
