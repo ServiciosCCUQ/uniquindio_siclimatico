@@ -16,8 +16,9 @@
 			<field name="model">uniquindio.fr.evento</field>
 			<field name="arch" type="xml">
 				<tree string="Lista Evento">
-					<field name="create_date" string="Fecha Creación"/>
-					<field name="especies"/>
+					<field name="fecha" />
+					<field name="create_date" string="Fecha Ingreso Sistemas"/>
+					<field name="especie_ids" string="Especies"/>
 					<field name="notas"/>
 				</tree>
 			</field>
@@ -29,22 +30,24 @@
 				<form string="Evento" version="7.0">
 					<sheet>
 						<group>
-							<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
-							<field name="fecha"/>
-						</group>
-						<group>
-							<field name="foto_name" invisible="1"/>
-							<field name="foto" filename="foto_name" widget='image' />
+							<group>
+								<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
+								<field name="fecha" required="1"/>
+							</group>
+							<group>
+								<field invisible="1" name="foto_name"/>
+								<field filename="foto_name" name="foto" widget="image"/>
+							</group>
 						</group>
 						<group string="Clasificación Especies">
 							<field name="especie_ids" nolabel="1">
 								<tree editable="top">
-									<field name="familia_id" />
-									<field name="genero_id" />
-									<field name="especie_id" />
-									<field name="individuos" />
-									<field name="genero" />
-									<field name="notas" />
+									<field name="familia_id"/>
+									<field name="genero_id" domain="[('familia_id', '=', familia_id)]"/>
+									<field name="especie_id" domain="[('genero_id', '=', genero_id)]"/>
+									<field name="individuos"/>
+									<field name="genero"/>
+									<field name="notas"/>
 								</tree>
 							</field>
 						</group>
