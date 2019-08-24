@@ -108,7 +108,7 @@ class Mqqt(models.Model):
                 voc = json_clima.get('voc') or ''
 
                 # Fecha en formato de arduino: Sat Aug 24 07:03:35 2019
-                fecha = datetime.strptime(fecha_raw, "%a %b %e %H:%M:%S %Y")
+                fecha = datetime.strptime(fecha_raw, "%a %b %d %H:%M:%S %Y")
                 # Ajuste a UTC
                 fecha = fecha + timedelta(hours=5)
                 f = fecha.strftime("%Y-%m-%d %H:%M:%S")
