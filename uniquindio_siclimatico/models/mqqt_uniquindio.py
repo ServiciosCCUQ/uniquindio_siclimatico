@@ -36,6 +36,7 @@ class Mqqt(models.Model):
 
     @api.multi
     def recibir_libacion(self, entrada):
+        _logger.info('[recibir_libacion] = %s ', entrada)
         with api.Environment.manage():
             new_cr = self.pool.cursor()
             self = self.with_env(self.env(cr=new_cr))
@@ -52,6 +53,7 @@ class Mqqt(models.Model):
 
                 libacion_model = self.env['uniquindio.fr.libacion']
                 vals = {'flor': flor, 'fecha': f}
+                _logger.info('Datos a Ingresar a libacion %s', vals)
                 libacion_model.create(vals)
 
                 new_cr.commit()
