@@ -8,7 +8,7 @@ cache:
 python:
   - "2.7"
 install:
-  - pip install paho-mqtt
+  - pip install -U paho-mqtt
 
 addons:
   postgresql: "9.5"
