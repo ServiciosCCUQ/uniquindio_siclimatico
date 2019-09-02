@@ -28,7 +28,7 @@ class Mqqt(models.Model):
     @api.multi
     def on_message(self, client, userdata, msg):
         _logger.info('msg.topic %s ', msg.topic)
-        _logger.info('msg.payload %s ', msg.payload)
+        _logger.info('msg.payload |%s|', msg.payload)
         if msg.topic == 'clima':
             self.recibir_clima(msg.payload)
         if msg.topoc == 'libacion':
