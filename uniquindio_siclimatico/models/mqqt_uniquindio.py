@@ -31,7 +31,7 @@ class Mqqt(models.Model):
         _logger.info('msg.payload |%s|', msg.payload)
         if msg.topic == 'clima':
             self.recibir_clima(msg.payload)
-        if msg.topoc == 'libacion':
+        if msg.topic == 'libacion':
             _logger.info('[on_message] = %s ', msg.payload)
             self.recibir_libacion(msg.payload)
 
