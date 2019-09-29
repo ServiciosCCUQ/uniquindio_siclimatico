@@ -29,3 +29,5 @@ from . import estaciones
 from . import tiposensor
 from . import sensoresestacion
 from . import medicion
+
+from . import matriz_datos

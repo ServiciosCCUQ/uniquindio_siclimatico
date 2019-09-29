@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="matrizdatos_view_filter" model="ir.ui.view">
+			<field name="name">Matriz Datos</field>
+			<field name="model">uniquindio.matriz_actividad</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Matriz Datos">					
+					<field name="fecha"/>
+					<field name="dia"/>
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+		<record id="matrizdatos_view_tree" model="ir.ui.view">
+			<field name="name">Matriz Datos Vista Lista</field>
+			<field name="model">uniquindio.matriz_actividad</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Matriz Datos">
+					<field name="name"/>
+					<field name="fecha"/>
+					<field name="dia"/>
+					<field name="h_inicio"/>
+					<field name="h_fin"/>
+					<field name="libaciones"/>
+					<field name="frecuencia_libaciones"/>
+				</tree>
+			</field>
+		</record>
+		<record id="matrizdatos_view_form_" model="ir.ui.view">
+			<field name="name">Matriz Datos Vista Formulario</field>
+			<field name="model">uniquindio.matriz_actividad</field>
+			<field name="arch" type="xml">
+				<form string="Matriz Datos" version="7.0">
+					<header>
+						<button class="oe_highlight" name="bt_calcular" string="Generar Matrix!" type="object" icon="terp-locked"/>
+					</header>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="fecha"/>
+							<field name="dia"/>
+							<field name="h_inicio"/>
+							<field name="h_fin"/>
+							<field name="libaciones"/>
+							<field name="frecuencia_libaciones"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="matrizdatos_action" model="ir.actions.act_window">
+			<field name="name">Matriz Datos</field>
+			<field name="res_model">uniquindio.matriz_actividad</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem action="matrizdatos_action" id="matrizdatos_menu" name="Matriz Datos" parent="sic_menu_principal"/>
+	</data>
+</odoo>
