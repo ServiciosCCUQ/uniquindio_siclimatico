@@ -5,7 +5,7 @@
 			<field name="name">Matriz Datos</field>
 			<field name="model">uniquindio.matriz_actividad</field>
 			<field name="arch" type="xml">
-				<search string="Buscar Matriz Datos">					
+				<search string="Buscar Matriz Datos">
 					<field name="fecha"/>
 					<field name="dia"/>
 					<field name="name"/>
@@ -24,6 +24,14 @@
 					<field name="h_fin"/>
 					<field name="libaciones"/>
 					<field name="frecuencia_libaciones"/>
+					<field name="temperatura"/>
+					<field name="presionbarometrica"/>
+					<field name="viento_vel"/>
+					<field name="precipitacion"/>
+					<field name="eco2"/>
+					<field name="voc"/>
+					<field name="ozono"/>
+					<field name="uv"/>
 				</tree>
 			</field>
 		</record>
@@ -33,7 +41,7 @@
 			<field name="arch" type="xml">
 				<form string="Matriz Datos" version="7.0">
 					<header>
-						<button class="oe_highlight" name="bt_calcular" string="Generar Matrix!" type="object" icon="terp-locked"/>
+						<button class="oe_highlight" icon="terp-locked" name="bt_calcular" string="Generar Matrix!" type="object"/>
 					</header>
 					<sheet>
 						<group>
@@ -44,6 +52,16 @@
 							<field name="h_fin"/>
 							<field name="libaciones"/>
 							<field name="frecuencia_libaciones"/>
+							<field name="temperatura"/>
+							<field name="presionbarometrica"/>
+							<field name="humedad"/>
+							<field name="viento_vel"/>
+							<field name="viento_dir"/>
+							<field name="precipitacion"/>
+							<field name="eco2"/>
+							<field name="voc"/>
+							<field name="ozono"/>
+							<field name="uv"/>
 						</group>
 					</sheet>
 				</form>

@@ -28,26 +28,42 @@
 			<field name="model">uniquindio.fr.evento</field>
 			<field name="arch" type="xml">
 				<form string="Evento" version="7.0">
+					<style>
+					    .openerp .visor_colibries > img { height: 6000px; width: 10000px; } 
+					    .openerp .oe_form .oe_form_field_image img { max-width:800px; max-height: 1056px; }
+					</style>
+					<header>
+						<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
+						<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>
+						<button icon="gtk-jump-to" name="bt_reopen" states="aprobado,anulado" string="Re-Evaluar" type="object"/>
+						<field name="state" widget="statusbar"/>
+					</header>
 					<sheet>
 						<group>
-							<group>
-								<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
-								<field name="fecha" required="1"/>
-							</group>
-							<group>
-								<field invisible="1" name="foto_name"/>
-								<field filename="foto_name" name="foto" widget="image"/>
-							</group>
+							<field invisible="1" name="foto_name"/>
+							<field filename="foto_name" name="foto" widget="image" nolabel="1" class="visor_colibries" readonly="1"/>
+						</group>						
+						<group col="4">
+							<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
+							<field name="fecha" readonly="1"/>
+							<field name="write_uid" string="Investigador Responsable" readonly="1" attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}"/>
+							<field name="write_date" string="Fecha Ultima Revisión" readonly="1" attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}"/>
+						</group>
+						<group col="6">
+							<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
+							<button icon="star-on" name="bt_revisar_especie('xxx')" states="nuevo" string="Tzacal x 1 M" type="object"/>
+							<button icon="star-on" name="bt_revisar_especie('yyy')" states="nuevo" string="Melivora x 1 H" type="object"/>
+							<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>
 						</group>
 						<group string="Clasificación Especies">
-							<field name="especie_ids" nolabel="1">
+							<field name="especie_ids" nolabel="1" default_focus="1">
 								<tree editable="top">
-									<field name="familia_id"/>
-									<field name="genero_id" domain="[('familia_id', '=', familia_id)]"/>
-									<field name="especie_id" domain="[('genero_id', '=', genero_id)]"/>
+									<field name="especie_id" />									
 									<field name="individuos"/>
 									<field name="genero"/>
 									<field name="notas"/>
+									<field name="genero_id" />
+									<field name="familia_id" />
 								</tree>
 							</field>
 						</group>

@@ -24,6 +24,17 @@ class MatrizActividad(models.Model):
     h_fin = fields.Datetime('Hora de Fin', required=True)
     libaciones = fields.Integer('Libaciones')
     frecuencia_libaciones = fields.Float('Frecuencia Libaciones')
+    temperatura = fields.Float('Temperatura (c)')
+    presionbarometrica = fields.Float('Presion Barometrica')
+    humedad = fields.Float('Humedad')
+    viento_vel = fields.Float('Velocidad Viento')
+    viento_dir = fields.Float('Velocidad Direccion')
+    precipitacion = fields.Float('Precipitacion (mm)')
+    eco2 = fields.Float(u'Dióxido de Carbono (ppm)')
+    voc = fields.Float(u'Compuestos Orgánicos Volátiles (ppb)')
+    ozono = fields.Float(u'Ozono (du)')
+    uv = fields.Float(u'Radiación Ultravioleta')
+
 
     def utc_5(self, fecha):
         return (fecha - timedelta(hours=5))
@@ -34,12 +45,72 @@ class MatrizActividad(models.Model):
     def rango(self, inicio, fin):
         return "%s:00 - %s:00" % (inicio, fin)
 
+    def obtener_fechasxhora(self,f_inicio,h_inicio,h_fin):
+        'Obtener fechas formateadas para rangos de busqueda'
+        
+        #ajustar fecha a hora de busqueda
+        f_inicio = f_inicio.replace(hour=h_inicio)
+        f_fin = f_inicio.replace(hour=h_fin)
+
+        #pasar fechas a UTC-0
+        f_inicio = self.utc_0(f_inicio)
+        f_fin = self.utc_0(f_fin)
+
+        return f_inicio, f_fin
+
     def obtener_estacion(self, estacion):
         estacion_model = self.env['uniquindio.estacion']
         busqueda_est = [('codinterno', '=', estacion)]
-        estacion = estacion_model.search(busqueda_est)
+        estacion_ids = estacion_model.search(busqueda_est)
 
-        return estacion[0]
+        return estacion_ids[0]
+
+    def obtener_sensor(self, codigo):
+        sensor_model = self.env['uniquindio.tiposensor']
+        busqueda_sensor = [('codinterno', '=', codigo)]
+        sensor_ids = sensor_model.search(busqueda_sensor)
+
+        return sensor_ids[0]
+
+    def obtener_var_clima(self, medicion_ids, filtro):
+        'Obtener promedio variable climatica'
+        infoclima_ids = medicion_ids.filtered(filtro)
+        elementos = float(len(infoclima_ids))
+
+        # si hay menos de 1 elemento
+        if elementos < 1:
+            return 0
+
+        suma = sum(info.valor for info in infoclima_ids)
+       
+        _logger.info('Suma %s / Elementos %s', suma , elementos)
+        return suma/elementos
+
+    def dato_sensor(self,medicion_ids, sensor_id, estacion_id, f_inicio,f_fin):
+        # TODO: Obtener f_inicial y f_final
+
+        f = lambda m: m.fecha >= str(f_inicio) and m.fecha < str(f_fin) and m.estacion_id.id == estacion_id.id and m.tipo_id.id == sensor_id.id
+
+        promedio = self.obtener_var_clima(medicion_ids,f)
+
+        if promedio == 0:
+            # Buscar en info climatica de APIS
+            darksky = self.obtener_estacion('darksky')
+            openweather = self.obtener_estacion('openweathermap')
+
+            f = lambda m: m.fecha >= str(f_inicio) and m.fecha < str(f_fin) and (m.estacion_id.id == darksky.id or m.estacion_id.id == openweather.id)  and m.tipo_id.id == sensor_id.id
+
+            promedio = self.obtener_var_clima(medicion_ids,f)
+
+        return promedio
+
+
+    def info_clima(self, medicion_ids, codsensor, estacion, f_inicio, f_fin):
+        sensor = self.obtener_sensor(codsensor)
+        res = self.dato_sensor(medicion_ids, sensor, estacion, f_inicio, f_fin)
+        return res
+
+
 
     def lista_dias(self, f_inicio, f_fin):
         patron_regla = 'RRULE:FREQ=DAILY'
@@ -77,7 +148,7 @@ class MatrizActividad(models.Model):
         'Retorna cantidad de libaciones entre 2 fechas especificas'
         # _logger.info('2. f_inicio %s - type %s', f_inicio, type(f_inicio))
         # _logger.info('2. f_fin %s - type %s', f_fin, type(f_fin))
-        filtro = lambda l: l.fecha >= str(f_inicio) and l.fecha < str(f_fin)        
+        filtro = lambda l: l.fecha >= str(f_inicio) and l.fecha < str(f_fin)
         libaciones_ids = lib_ids.filtered(filtro)
         return len(libaciones_ids)
 
@@ -117,6 +188,7 @@ class MatrizActividad(models.Model):
         (13,14), (14,15), (15,16), (16,17), (17,18), (18,19),(19,20)]
 
         medicion_ids = medicion_model.search([('estacion_id','=',estacion.id)],order='fecha')
+        # Obtener fechas de acuerdo a estacion principal
         primera_fecha = medicion_ids[0].fecha
         ultima_fecha = medicion_ids[ len(medicion_ids) - 1 ].fecha
 
@@ -128,6 +200,9 @@ class MatrizActividad(models.Model):
 
         # identificador de dias muestreo
         dia_muestra = 1
+
+        # se buscan registros en APIs para complementar info de clima
+        medicion_ids = medicion_model.search([],order='fecha')
 
         for d in dias:
             lib_totales = self.obtener_libaciones_dia(libaciones_ids,d)
@@ -149,6 +224,29 @@ class MatrizActividad(models.Model):
                         'libaciones' : lib_hora,
                         'frecuencia_libaciones' : frecuencia_hora
                 }
+
+                
+                temp = self.info_clima(medicion_ids, 'temp_generic', estacion, f_inicio, f_fin)
+                pb = self.info_clima(medicion_ids, 'p_admosferica_generic', estacion, f_inicio, f_fin)
+                humedad = self.info_clima(medicion_ids, 'humedad_generic', estacion, f_inicio, f_fin)
+                viento_vel = self.info_clima(medicion_ids, 'vel_viento_5', estacion, f_inicio, f_fin)
+                viento_dir = self.info_clima(medicion_ids, 'dir_viento_generic', estacion, f_inicio, f_fin)
+                lluvia = self.info_clima(medicion_ids, 'precipitaciones_generic', estacion, f_inicio, f_fin)
+                eco2 = self.info_clima(medicion_ids, 'eco2', estacion, f_inicio, f_fin)
+                voc = self.info_clima(medicion_ids, 'voc', estacion, f_inicio, f_fin)
+                ozono = self.info_clima(medicion_ids, 'ozono_generic', estacion, f_inicio, f_fin)
+                uv = self.info_clima(medicion_ids, 'uv_generic', estacion, f_inicio, f_fin)
+
+                vals.update(temperatura=temp)
+                vals.update(presionbarometrica=pb)
+                vals.update(humedad=humedad)
+                vals.update(viento_vel=viento_vel)
+                vals.update(viento_dir=viento_dir)
+                vals.update(precipitacion=lluvia)
+                vals.update(eco2=eco2)
+                vals.update(voc=voc)
+                vals.update(ozono=ozono)
+                vals.update(uv=uv)
 
                 #_logger.info('dato estadistico= %s \n',vals)
 
