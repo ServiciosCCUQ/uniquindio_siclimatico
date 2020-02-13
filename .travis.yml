@@ -94,7 +94,7 @@ install:
   - travis_install_nightly
 
 before_script:
-  - "pep8 --exclude=uniquindio_siclimatico/views"
+  - pycodestyle --statistics -qq --ignore=W7910,W7908 .
 
 script:
   - travis_run_tests
