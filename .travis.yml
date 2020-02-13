@@ -93,6 +93,9 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
+before_script:
+  - "pep8 --exclude=uniquindio_siclimatico/views"
+
 script:
   - travis_run_tests
   - git fetch --unshallow #fix : Shallow clone detected, no blame information will be provided.
