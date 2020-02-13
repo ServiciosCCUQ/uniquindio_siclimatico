@@ -93,9 +93,6 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
-before_script:
-  - pycodestyle --statistics -qq --ignore=W7910,W7908 .
-
 script:
   - travis_run_tests
   - git fetch --unshallow #fix : Shallow clone detected, no blame information will be provided.
