@@ -40,12 +40,14 @@ class Evento(models.Model):
         genero = self.env.context.get('genero')
 
         especie_obj = self.env['uniquindio.fr.especie']
-        especie_id = especie_obj.search([('codinterno','=',especie)], limit=1)
+        especie_id = especie_obj.search(
+            [('codinterno', '=', especie)], limit=1)
 
         genero_id = especie_id.genero_id
         familia_id = genero_id.familia_id
 
-        vals = {'genero': genero, 'especie_id': especie_id.id, 'genero_id': genero_id.id , 'familia_id': familia_id.id}
+        vals = {'genero': genero, 'especie_id': especie_id.id,
+                'genero_id': genero_id.id, 'familia_id': familia_id.id}
         self.write({'especie_ids': [(0, 0, vals)], 'state': 'aprobado'})
 
         return True
