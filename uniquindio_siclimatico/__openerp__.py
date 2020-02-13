@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'Uniquindio: Sistema de Informacion Climatico',
+    'name': 'UNIQUINDIO: Sistema de Informacion Climatico',
     'version': '1.0',
     'depends': ['base'],
     'author': 'Gustavo Salgado - Fredy Alexander Espana',

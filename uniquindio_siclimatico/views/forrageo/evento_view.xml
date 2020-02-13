@@ -8,6 +8,23 @@
 				<search string="Buscar Evento">
 					<field name="especies"/>
 					<field name="notas"/>
+					<separator/>
+					<group expand="0" string="Filtros Estado">
+						<filter domain="[('state','=','nuevo')]" help="Eventos Pendientes de Clasificar" name="pendientes" string="Pendientes de Clasificar"/>
+						<filter domain="[('state','=','aprobado')]" help="Eventos Clasificados" name="aprobados" string="Eventos Clasificados"/>
+						<filter domain="[('state','=','anulado')]" help="Eventos Anulados" name="anulados" string="Eventos Anulados"/>
+					</group>
+					<separator/>
+					<group expand="0" string="Ver por ...">
+						<filter context="{'group_by' :'state'}" domain="[]" string="Estado"/>
+						<filter context="{'group_by' :'write_uid'}" domain="[]" string="Investigador"/>
+						<filter context="{'group_by' :'fecha'}" domain="[]" string="Fecha Evento"/>
+						<separator/>
+						<filter context="{'group_by' :'fecha:year'}" domain="[]" name="filter_anio" string="Año Evento"/>
+						<filter context="{'group_by' :'fecha:month'}" domain="[]" name="filter_mes" string="Mes Evento"/>
+						<filter context="{'group_by' :'fecha:week'}" domain="[]" name="filter_semana" string="Semana Evento"/>
+						<filter context="{'group_by' :'fecha:day'}" domain="[]" name="filter_dia" string="Dia Evento"/>
+					</group>					
 				</search>
 			</field>
 		</record>
@@ -20,6 +37,7 @@
 					<field name="create_date" string="Fecha Ingreso Sistemas"/>
 					<field name="especie_ids" string="Especies"/>
 					<field name="notas"/>
+					<field name="state"/>
 				</tree>
 			</field>
 		</record>
@@ -51,8 +69,8 @@
 						</group>
 						<group col="6">
 							<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
-							<button icon="star-on" name="bt_revisar_especie('xxx')" states="nuevo" string="Tzacal x 1 M" type="object"/>
-							<button icon="star-on" name="bt_revisar_especie('yyy')" states="nuevo" string="Melivora x 1 H" type="object"/>
+							<button context="{'especie': 'tzacal', 'genero' : 'm'}" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 M" type="object" help="Validación Rapida: Especie Tzacal - 1 Macho"/>
+							<button context="{'especie': 'tzacal', 'genero' : 'h'}" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 H" help="Validación Rapida: Especie Tzacal - 1 Hembra" type="object"/>
 							<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>
 						</group>
 						<group string="Clasificación Especies">
@@ -79,6 +97,7 @@
 			<field name="res_model">uniquindio.fr.evento</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_pendientes': 1}</field>
 		</record>
 		<menuitem action="evento_action" id="evento_menu" name="Eventos" parent="sic_menu_forrageo"/>
 	</data>

@@ -24,8 +24,8 @@ class EventoEspecie(models.Model):
     especie_id = fields.Many2one(
         string='Especie', required=True,
         comodel_name='uniquindio.fr.especie', index=True)
-    individuos = fields.Integer('No. Individos', required=True, default=1)
-    genero = fields.Selection(string='Genero', required=True, selection=gen)
+    individuos = fields.Integer('# Individos', required=True, default=1)
+    genero = fields.Selection(string=u'Género', required=True, selection=gen)
     notas = fields.Text('Notas', required=False)
 
     @api.onchange('especie_id')
