@@ -24,7 +24,7 @@
 						<filter context="{'group_by' :'fecha:month'}" domain="[]" name="filter_mes" string="Mes Evento"/>
 						<filter context="{'group_by' :'fecha:week'}" domain="[]" name="filter_semana" string="Semana Evento"/>
 						<filter context="{'group_by' :'fecha:day'}" domain="[]" name="filter_dia" string="Dia Evento"/>
-					</group>					
+					</group>
 				</search>
 			</field>
 		</record>
@@ -33,7 +33,7 @@
 			<field name="model">uniquindio.fr.evento</field>
 			<field name="arch" type="xml">
 				<tree string="Lista Evento">
-					<field name="fecha" />
+					<field name="fecha"/>
 					<field name="create_date" string="Fecha Ingreso Sistemas"/>
 					<field name="especie_ids" string="Especies"/>
 					<field name="notas"/>
@@ -46,8 +46,7 @@
 			<field name="model">uniquindio.fr.evento</field>
 			<field name="arch" type="xml">
 				<form string="Evento" version="7.0">
-					<style>
-					    .openerp .visor_colibries > img { height: 6000px; width: 10000px; } 
+					<style>.openerp .visor_colibries &gt;img { height: 6000px; width: 10000px; } 
 					    .openerp .oe_form .oe_form_field_image img { max-width:800px; max-height: 1056px; }
 					</style>
 					<header>
@@ -59,29 +58,29 @@
 					<sheet>
 						<group>
 							<field invisible="1" name="foto_name"/>
-							<field filename="foto_name" name="foto" widget="image" nolabel="1" class="visor_colibries" readonly="1"/>
-						</group>						
+							<field class="visor_colibries" filename="foto_name" name="foto" nolabel="1" readonly="1" widget="image"/>
+						</group>
 						<group col="4">
 							<field name="create_date" readonly="1" string="Fecha Ingreso Sistemas"/>
 							<field name="fecha" readonly="1"/>
-							<field name="write_uid" string="Investigador Responsable" readonly="1" attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}"/>
-							<field name="write_date" string="Fecha Ultima Revisión" readonly="1" attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}"/>
+							<field attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}" name="write_uid" readonly="1" string="Investigador Responsable"/>
+							<field attrs="{'invisible':[('state','not in', ['aprobado','anulado'])]}" name="write_date" readonly="1" string="Fecha Ultima Revisión"/>
 						</group>
 						<group col="6">
 							<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
-							<button context="{'especie': 'tzacal', 'genero' : 'm'}" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 M" type="object" help="Validación Rapida: Especie Tzacal - 1 Macho"/>
-							<button context="{'especie': 'tzacal', 'genero' : 'h'}" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 H" help="Validación Rapida: Especie Tzacal - 1 Hembra" type="object"/>
+							<button context="{'especie': 'tzacal', 'genero' : 'm'}" help="Validación Rapida: Especie Tzacal - 1 Macho" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 M" type="object"/>
+							<button context="{'especie': 'tzacal', 'genero' : 'h'}" help="Validación Rapida: Especie Tzacal - 1 Hembra" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 H" type="object"/>
 							<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>
 						</group>
 						<group string="Clasificación Especies">
-							<field name="especie_ids" nolabel="1" default_focus="1">
+							<field default_focus="1" name="especie_ids" nolabel="1">
 								<tree editable="top">
-									<field name="especie_id" />									
+									<field name="especie_id"/>
 									<field name="individuos"/>
 									<field name="genero"/>
 									<field name="notas"/>
-									<field name="genero_id" />
-									<field name="familia_id" />
+									<field name="genero_id"/>
+									<field name="familia_id"/>
 								</tree>
 							</field>
 						</group>

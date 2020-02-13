@@ -30,7 +30,7 @@
 					<sheet>
 						<group>
 							<field name="create_date" readonly="1" string="Fecha Ingreso Sistema"/>
-							<field name="fecha" />
+							<field name="fecha"/>
 							<field name="flor"/>
 							<field name="notas"/>
 						</group>
