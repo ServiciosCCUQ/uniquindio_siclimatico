@@ -9,6 +9,24 @@
 					<field name="fecha"/>
 					<field name="dia"/>
 					<field name="name"/>
+					<separator/>
+					<group expand="0" string_="Filtros de Tiempo">
+<filter domain="[('fecha','&lt;=', time.strftime('2019-09-30')),('fecha','&gt;=',time.strftime('2019-09-01'))]" name="sep2019" string="Septiembre 2019"/>
+<filter domain="[('fecha','&lt;=', time.strftime('2019-10-31')),('fecha','&gt;=',time.strftime('2019-10-01'))]" name="oct2019" string="Octubre 2019"/>
+<filter domain="[('fecha','&lt;=', time.strftime('2019-11-30')),('fecha','&gt;=',time.strftime('2019-11-01'))]" name="nov2019" string="Noviembre 2019"/>
+<filter domain="[('fecha','&lt;=', time.strftime('2019-12-31')),('fecha','&gt;=',time.strftime('2019-12-01'))]" name="dic2019" string="Diciembre 2019"/>
+<filter domain="[('fecha','&lt;=', time.strftime('%%Y-01-31')),('fecha','&gt;=',time.strftime('%%Y-01-01'))]" name="ene2020" string="Enero 2020"/>
+<filter domain="[('fecha','&lt;=', time.strftime('%%Y-02-29')),('fecha','&gt;=',time.strftime('%%Y-02-01'))]" name="feb2020" string="Febrero 2020"/>						
+					</group>
+					<separator/>
+					<group expand="0" string="Ver por ...">
+						<filter context="{'group_by' :'fecha'}" domain="[]" string="Fecha"/>
+						<separator/>
+						<filter context="{'group_by' :'fecha:year'}" domain="[]" name="filter_anio" string="Año"/>
+						<filter context="{'group_by' :'fecha:month'}" domain="[]" name="filter_mes" string="Mes"/>
+						<filter context="{'group_by' :'fecha:week'}" domain="[]" name="filter_semana" string="Semana"/>
+						<filter context="{'group_by' :'fecha:day'}" domain="[]" name="filter_dia" string="Dia"/>						
+					</group>
 				</search>
 			</field>
 		</record>
@@ -67,11 +85,23 @@
 				</form>
 			</field>
 		</record>
+		<record id="matrizdatos_view_graph" model="ir.ui.view">
+			<field name="name">Matriz Datos Graph</field>
+			<field name="model">uniquindio.matriz_actividad</field>
+			<field name="arch" type="xml">
+				<graph grouped="1" string="Grafica">
+					<!--                                     
+                    <field name="tipo_id" type="col"/><field name="valor" type="row"/>-->
+					<field name="fecha" interval="day" type="col"/>			
+					<field name="libaciones" type="measure"/>
+				</graph>
+			</field>
+		</record>		
 		<record id="matrizdatos_action" model="ir.actions.act_window">
 			<field name="name">Matriz Datos</field>
 			<field name="res_model">uniquindio.matriz_actividad</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,graph,form</field>
 		</record>
 		<menuitem action="matrizdatos_action" id="matrizdatos_menu" name="Matriz Datos" parent="sic_menu_principal"/>
 	</data>
