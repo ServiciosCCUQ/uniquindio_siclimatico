@@ -8,6 +8,22 @@
 				<search string="Buscar Libacion">
 					<field name="flor"/>
 					<field name="notas"/>
+					<separator/>
+					<group expand="0" string="Filtros Estado">
+						<filter domain="[('state','=','noconfir')]" help="Libacion no Confirmada" name="noconfir" string="Pendiente de Confirmar"/>
+						<filter domain="[('state','=','confir')]" help="Libacion Confirmada" name="confir" string="Libación Confirmada"/>
+						<filter domain="[('state','=','anulada')]" help="Libacion Anulada" name="anulada" string="Libación Anulada"/>
+					</group>
+					<separator/>
+					<group expand="0" string="Ver por ...">
+						<filter context="{'group_by' :'state'}" domain="[]" string="Estado"/>						
+						<filter context="{'group_by' :'fecha'}" domain="[]" string="Fecha Libación"/>
+						<separator/>
+						<filter context="{'group_by' :'fecha:year'}" domain="[]" name="filter_anio" string="Año Libación"/>
+						<filter context="{'group_by' :'fecha:month'}" domain="[]" name="filter_mes" string="Mes Libación"/>
+						<filter context="{'group_by' :'fecha:week'}" domain="[]" name="filter_semana" string="Semana Libación"/>
+						<filter context="{'group_by' :'fecha:day'}" domain="[]" name="filter_dia" string="Dia Libación"/>
+					</group>					
 				</search>
 			</field>
 		</record>
@@ -17,8 +33,10 @@
 			<field name="arch" type="xml">
 				<tree string="Lista Libacion">
 					<field name="fecha"/>
+					<field name="evento_id"/>
 					<field name="flor"/>
 					<field name="notas"/>
+					<field name="state"/>
 				</tree>
 			</field>
 		</record>
@@ -27,11 +45,15 @@
 			<field name="model">uniquindio.fr.libacion</field>
 			<field name="arch" type="xml">
 				<form string="Libacion" version="7.0">
+					<header>
+						<field name="state" widget="statusbar"/>
+					</header>
 					<sheet>
 						<group>
 							<field name="create_date" readonly="1" string="Fecha Ingreso Sistema"/>
 							<field name="fecha"/>
 							<field name="flor"/>
+							<field name="evento_id" readonly="1"/>
 							<field name="notas"/>
 						</group>
 					</sheet>
@@ -43,6 +65,7 @@
 			<field name="res_model">uniquindio.fr.libacion</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_confir': 1}</field>
 		</record>
 		<menuitem action="libacion_action" id="libacion_menu" name="Libaciónes" parent="sic_menu_forrageo"/>
 	</data>

@@ -11,16 +11,17 @@ ESTADOS = [
 
 class Evento(models.Model):
     _name = 'uniquindio.fr.evento'
+    _order = 'fecha'
 
     especies = fields.Integer('No. Individuos', required=False)
-    fecha = fields.Datetime(u'Fecha Evento')
+    fecha = fields.Datetime(u'Fecha Evento', index=True)
     notas = fields.Text('Notas', required=False)
     foto_name = fields.Char('Nombre Archivo')
     foto = fields.Binary('Fotografia')
     especie_ids = fields.One2many(
         string='Especies', comodel_name='uniquindio.fr.evento.especie',
         inverse_name='evento_id', required=False)
-    state = fields.Selection(ESTADOS, 'Estado', default="nuevo")
+    state = fields.Selection(ESTADOS, 'Estado', default="nuevo", index=True)
 
     @api.multi
     def bt_revisar(self):
