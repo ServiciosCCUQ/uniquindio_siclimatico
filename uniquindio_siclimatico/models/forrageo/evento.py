@@ -65,15 +65,24 @@ class Evento(models.Model):
 
         return True
 
-    def get_fechas(self, fecha_raw):
+    def get_fechas(self, fecha_raw, minv, maxv):
         """ obt fechas de busqueda de Libacion de acuerdo info de captura"""
         f_evento = datetime.strptime(fecha_raw, "%Y-%m-%d %H:%M:%S")
-        f_ajuste = f_evento - timedelta(seconds=3)
+        f_ajuste = f_evento - timedelta(seconds=minv)
+        f_evento = f_evento + timedelta(seconds=maxv)
 
         f_inicio = f_evento.strftime("%Y-%m-%d %H:%M:%S")
         f_fin = f_ajuste.strftime("%Y-%m-%d %H:%M:%S")
 
         return f_fin, f_inicio
+
+    def get_dominio(self, fecha_raw, minv=3, maxv=3):
+        """Construir dominio dinamico de acuerdo a rango de segundos"""
+        f_inicio, f_fin = self.get_fechas(fecha_raw, minv, maxv)
+        dominio_libacion = [
+            ('fecha', '>=', f_inicio), ('fecha', '<=', f_fin),
+            ('state', '=', 'noconfir')]
+        return dominio_libacion
 
     @api.multi
     def bt_asociar_libacion(self):
@@ -82,18 +91,42 @@ class Evento(models.Model):
         eventos_ids = self.search(dominio_busqueda)
 
         for eve in eventos_ids:
-            f_inicio, f_fin = self.get_fechas(eve.fecha)
-            dominio_libacion = [
-                ('fecha', '>=', f_inicio), ('fecha', '<=', f_fin),
-                ('state', '=', 'noconfir')]
+            dominio_libacion = self.get_dominio(eve.fecha)
 
             libacion_ids = libacion_obj.search(
                 dominio_libacion, order="fecha desc", limit=1)
 
-            if libacion_ids:
+            if not libacion_ids:
+                # Si no identifica en primer barrido aumentar el rango
+                dominio_libacion = self.get_dominio(eve.fecha, 6, 6)
+                libacion_ids = libacion_obj.search(
+                    dominio_libacion, order="fecha desc", limit=1)
+
+            if not libacion_ids:
+                # Si no identifica en segun barrido aumentar el rango
+                dominio_libacion = self.get_dominio(eve.fecha, 10, 10)
+                libacion_ids = libacion_obj.search(
+                    dominio_libacion, order="fecha desc", limit=1)
+
+            if not libacion_ids:
+                # Si no identifica en tercer barrido aumentar el rango
+                dominio_libacion = self.get_dominio(eve.fecha, 30, 30)
+                libacion_ids = libacion_obj.search(
+                    dominio_libacion, order="fecha desc", limit=1)
+
+            if not libacion_ids:
+                # Si no identifica en cuarto barrido aumentar el rango
+                dominio_libacion = self.get_dominio(eve.fecha, 60, 60)
+                libacion_ids = libacion_obj.search(
+                    dominio_libacion, order="fecha desc", limit=1)
+
+            # if eve.id == 289:
                 # _logger.info('domain %s = ', dominio_libacion)
                 # _logger.info('Evento id = %s |', eve.id)
                 # _logger.info('Libaciones id = %s  |', libacion_ids.ids)
+
+            if libacion_ids:
+
                 vals = {'evento_id': eve.id, 'state': 'confir'}
                 libacion_ids.write(vals)
                 eve.state_libacion = 'aso'
