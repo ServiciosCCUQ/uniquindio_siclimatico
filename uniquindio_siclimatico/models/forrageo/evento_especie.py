@@ -25,7 +25,8 @@ class EventoEspecie(models.Model):
         string='Especie', required=True,
         comodel_name='uniquindio.fr.especie', index=True)
     individuos = fields.Integer('# Individos', required=True, default=1)
-    genero = fields.Selection(string=u'Género', required=True, selection=gen)
+    genero = fields.Selection(
+        string=u'Género', required=True, selection=gen, default='i')
     notas = fields.Text('Notas', required=False)
 
     @api.onchange('especie_id')

@@ -53,6 +53,7 @@
 						<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
 						<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>
 						<button icon="gtk-jump-to" name="bt_reopen" states="aprobado,anulado" string="Re-Evaluar" type="object"/>
+						<button class="oe_highlight" icon="terp-tools" name="bt_asociar_libacion" string="Asociar Libaciones" type="object" groups="base.group_erp_manager"/>
 						<field name="state" widget="statusbar"/>
 					</header>
 					<sheet>
@@ -68,6 +69,7 @@
 						</group>
 						<group col="6">
 							<button class="oe_highlight" icon="gtk-apply" name="bt_revisar" states="nuevo" string="Validar" type="object"/>
+							<button context="{'especie': 'tzacal', 'genero' : 'i'}" help="Validación Rapida: Especie Tzacal - Sexo no especificado" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1" type="object"/>
 							<button context="{'especie': 'tzacal', 'genero' : 'm'}" help="Validación Rapida: Especie Tzacal - 1 Macho" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 M" type="object"/>
 							<button context="{'especie': 'tzacal', 'genero' : 'h'}" help="Validación Rapida: Especie Tzacal - 1 Hembra" icon="star-on" name="bt_revisar_especie" states="nuevo" string="Tzacal x 1 H" type="object"/>
 							<button icon="gtk-dialog-error" name="bt_anular" states="nuevo" string="Anular" type="object"/>

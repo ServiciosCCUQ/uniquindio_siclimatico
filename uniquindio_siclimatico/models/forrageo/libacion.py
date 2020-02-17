@@ -20,4 +20,4 @@ class Libacion(models.Model):
         ESTADOS, 'Estado', default="noconfir", index=True)
     evento_id = fields.Many2one(
         string='Evento', required=True,
-        comodel_name='uniquindio.fr.evento', index=True)    
+        comodel_name='uniquindio.fr.evento', index=True)

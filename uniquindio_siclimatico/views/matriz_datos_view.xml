@@ -11,12 +11,12 @@
 					<field name="name"/>
 					<separator/>
 					<group expand="0" string_="Filtros de Tiempo">
-<filter domain="[('fecha','&lt;=', time.strftime('2019-09-30')),('fecha','&gt;=',time.strftime('2019-09-01'))]" name="sep2019" string="Septiembre 2019"/>
-<filter domain="[('fecha','&lt;=', time.strftime('2019-10-31')),('fecha','&gt;=',time.strftime('2019-10-01'))]" name="oct2019" string="Octubre 2019"/>
-<filter domain="[('fecha','&lt;=', time.strftime('2019-11-30')),('fecha','&gt;=',time.strftime('2019-11-01'))]" name="nov2019" string="Noviembre 2019"/>
-<filter domain="[('fecha','&lt;=', time.strftime('2019-12-31')),('fecha','&gt;=',time.strftime('2019-12-01'))]" name="dic2019" string="Diciembre 2019"/>
-<filter domain="[('fecha','&lt;=', time.strftime('%%Y-01-31')),('fecha','&gt;=',time.strftime('%%Y-01-01'))]" name="ene2020" string="Enero 2020"/>
-<filter domain="[('fecha','&lt;=', time.strftime('%%Y-02-29')),('fecha','&gt;=',time.strftime('%%Y-02-01'))]" name="feb2020" string="Febrero 2020"/>						
+						<filter domain="[('fecha','&lt;=', time.strftime('2019-09-30')),('fecha','&gt;=',time.strftime('2019-09-01'))]" name="sep2019" string="Septiembre 2019"/>
+						<filter domain="[('fecha','&lt;=', time.strftime('2019-10-31')),('fecha','&gt;=',time.strftime('2019-10-01'))]" name="oct2019" string="Octubre 2019"/>
+						<filter domain="[('fecha','&lt;=', time.strftime('2019-11-30')),('fecha','&gt;=',time.strftime('2019-11-01'))]" name="nov2019" string="Noviembre 2019"/>
+						<filter domain="[('fecha','&lt;=', time.strftime('2019-12-31')),('fecha','&gt;=',time.strftime('2019-12-01'))]" name="dic2019" string="Diciembre 2019"/>
+						<filter domain="[('fecha','&lt;=', time.strftime('%%Y-01-31')),('fecha','&gt;=',time.strftime('%%Y-01-01'))]" name="ene2020" string="Enero 2020"/>
+						<filter domain="[('fecha','&lt;=', time.strftime('%%Y-02-29')),('fecha','&gt;=',time.strftime('%%Y-02-01'))]" name="feb2020" string="Febrero 2020"/>						
 					</group>
 					<separator/>
 					<group expand="0" string="Ver por ...">
