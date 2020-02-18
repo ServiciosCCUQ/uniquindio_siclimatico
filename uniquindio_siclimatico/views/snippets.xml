@@ -14,7 +14,7 @@
           <div class="card-wrapper">
             <div class="card">
               <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-dev.jpeg"/>
-              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/gaso.jpg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/gaso.jpeg"/>
               <h1>Gustavo Salgado Ocampo</h1>
               <p class="job-title">Investigador Ingeniería</p>
               <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio
@@ -29,7 +29,7 @@
           </p>
             </div>
             <div class="card">
-              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpg"/>
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/juan.jpg"/>
               <h1>Juan Esteban Cáceres</h1>
               <p class="job-title">Investigador Biología</p>
@@ -37,7 +37,7 @@
           </p>
             </div>
             <div class="card">
-              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpg"/>
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/ferney.jpg"/>
               <h1>Ferney Osorio Benítez</h1>
               <p class="job-title">Investigador Biología</p>
