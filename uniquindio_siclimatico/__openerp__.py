@@ -23,7 +23,7 @@
 {
     'name': 'UNIQUINDIO: Sistema de Informacion Climatico',
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base', 'website'],
     'author': 'Gustavo Salgado - Fredy Alexander Espana',
     'website': 'https://www.odoo.com/',
     'category': 'iot',
@@ -37,6 +37,7 @@
         'data': [
             'security/uniquindio_siclimatico_security.xml',
             'security/ir.model.access.csv',
+            'views/snippets.xml',
             'views/sic_menu.xml',
             'views/forrageo/libacion_view.xml',
             'views/forrageo/evento_view.xml',

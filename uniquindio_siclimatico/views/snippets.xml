@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- se deberia separar en archivo assets.xml -->
+    <template id="mystyle" inherit_id="website.assets_frontend" name="My style">
+      <xpath expr="link[last()]" position="after">
+        <link href="/uniquindio_siclimatico/static/src/css/snippets.css" rel="stylesheet" type="text/css"/>
+      </xpath>
+    </template>
+
+    <template id="equipo_trabajo" name="Equipo de Trabajo">
+      <section class="equipo_trabajo">
+        <div class="container_team">
+          <div class="card-wrapper">
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-dev.jpeg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/gaso.jpg"/>
+              <h1>Gustavo Salgado Ocampo</h1>
+              <p class="job-title">Investigador Ingeniería</p>
+              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio
+          </p>
+            </div>
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-circuit.jpeg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/freddy.jpg"/>
+              <h1>Fredy Alexander España</h1>
+              <p class="job-title">Investigador Ingeniería</p>
+              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio
+          </p>
+            </div>
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/juan.jpg"/>
+              <h1>Juan Esteban Cáceres</h1>
+              <p class="job-title">Investigador Biología</p>
+              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio
+          </p>
+            </div>
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/ferney.jpg"/>
+              <h1>Ferney Osorio Benítez</h1>
+              <p class="job-title">Investigador Biología</p>
+              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio
+          </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
+      <xpath expr="//div[@id='snippet_content']/div[@class='o_panel_body']" position="inside">
+        <t t-snippet="uniquindio_siclimatico.equipo_trabajo" t-thumbnail="/uniquindio_siclimatico/static/src/img/ui/snippet_thumb.png"/>
+      </xpath>
+    </template>
+  </data>
+</openerp>
