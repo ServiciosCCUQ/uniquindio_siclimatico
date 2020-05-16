@@ -14,35 +14,55 @@
           <div class="card-wrapper">
             <div class="card">
               <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-dev.jpeg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/fdg.jpg"/>
+              <h1>Faber Danilo Giraldo V.</h1>
+              <p class="job-title">Director</p>
+              <p class="about">Docente Investigador - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio</p>
+            </div>
+
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpeg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/hmm.jpg"/>
+              <h1>Hugo Mantilla Meluk</h1>
+              <p class="job-title">Asesor Técnico</p>
+              <p class="about">Docente Investigador - Programa Biología, Universidad del Quindio</p>
+            </div>
+
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-dev.jpeg"/>
+              <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/jit.png"/>
+              <h1>Jorge Iván Triviño</h1>
+              <p class="job-title">Asesor Técnico</p>
+              <p class="about">Docente Investigador - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio</p>
+            </div>            
+
+            <div class="card">
+              <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-dev.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/gaso.jpeg"/>
               <h1>Gustavo Salgado Ocampo</h1>
               <p class="job-title">Investigador Ingeniería</p>
-              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio
-          </p>
+              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio</p>
             </div>
             <div class="card">
               <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg-circuit.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/freddy.jpg"/>
               <h1>Fredy Alexander España</h1>
               <p class="job-title">Investigador Ingeniería</p>
-              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio
-          </p>
+              <p class="about">Estudiante 10 Semestre - Programa Ingeniería de Sistemas y Computación, Universidad del Quindio</p>
             </div>
             <div class="card">
               <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/juan.jpg"/>
               <h1>Juan Esteban Cáceres</h1>
               <p class="job-title">Investigador Biología</p>
-              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio
-          </p>
+              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio</p>
             </div>
             <div class="card">
               <img alt="card backgroud" class="card-img" src="/uniquindio_siclimatico/static/src/img/card-bg.jpeg"/>
               <img alt="team1" class="profile-img" src="/uniquindio_siclimatico/static/src/img/ferney.jpg"/>
               <h1>Ferney Osorio Benítez</h1>
               <p class="job-title">Investigador Biología</p>
-              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio
-          </p>
+              <p class="about">Estudiante Octavo Semestre - Programa Biología, Universidad del Quindio</p>
             </div>
           </div>
         </div>
