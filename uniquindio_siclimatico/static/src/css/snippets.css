@@ -158,6 +158,18 @@ html {
   .card:nth-child(4) {
     animation: fadeIn 0.5s 2s backwards;
   }
+  .card:nth-child(5) {
+    animation: fadeIn 0.5s 0.5s backwards;
+  }
+  .card:nth-child(6) {
+    animation: fadeIn 0.5s 1s backwards;
+  }
+  .card:nth-child(7) {
+    animation: fadeIn 0.5s 1.5s backwards;
+  }
+  .card:nth-child(8) {
+    animation: fadeIn 0.5s 2s backwards;
+  }
   .card:hover {
     transform: scale(1.05);
   }
