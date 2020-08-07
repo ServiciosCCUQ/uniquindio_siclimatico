@@ -18,4 +18,4 @@ Fredy Alexander España faespanag@uqvirtual.edu.co
 Director Tesis:
 Fáber Danilo Giraldo Velásquez fdgiraldo@uniquindio.edu.co
 
-Acerca del Proyecto: <a href="https://ceam-csp.me/page/acerca-de-sic">CEAM-C.S.P.</a>
+Acerca del Proyecto: <a href="https://ceam-csp.software//page/acerca-de-sic">CEAM-C.S.P.</a>
