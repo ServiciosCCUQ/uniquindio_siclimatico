@@ -51,11 +51,11 @@
 			</field>
 		</record>
 		<record id="evento_especie_action" model="ir.actions.act_window">
-			<field name="name">Especies por Evento</field>
+			<field name="name">Especies Identificadas</field>
 			<field name="res_model">uniquindio.fr.evento.especie</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>			
 		</record>
-		<menuitem action="evento_especie_action" id="evento_especie_menu" name="Especies eventos" parent="sic_menu_forrageo"/>
+		<menuitem action="evento_especie_action" id="evento_especie_menu" name="Especies Identificadas" parent="sic_menu_forrageo"/>
 	</data>
 </odoo>
