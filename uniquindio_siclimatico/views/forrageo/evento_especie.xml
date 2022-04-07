@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="evento_especie_view_filter" model="ir.ui.view">
+			<field name="name">Evento</field>
+			<field name="model">uniquindio.fr.evento.especie</field>
+			<field name="arch" type="xml">
+				<search string="Buscar Evento">
+					<group expand="0" string="Ver por ...">
+						<filter context="{'group_by' :'evento_id'}" domain="[]" string="Evento"/>						
+						<filter context="{'group_by' :'familia_id'}" domain="[]" string="Familia"/>
+						<filter context="{'group_by' :'genero_id'}" domain="[]" string="Genero"/>
+						<filter context="{'group_by' :'especie_id'}" domain="[]" string="Especie"/>
+						<filter context="{'group_by' :'genero'}" domain="[]" string="Sexo"/>
+					</group>					
+				</search>
+			</field>
+		</record>
+		<record id="evento_especie_view_tree" model="ir.ui.view">
+			<field name="name">Evento Vista Lista</field>
+			<field name="model">uniquindio.fr.evento.especie</field>
+			<field name="arch" type="xml">
+				<tree string="Lista Evento" create="false" edit="false">
+					<field name="evento_id"/>
+					<field name="familia_id"/>
+					<field name="genero_id"/>
+					<field name="especie_id"/>
+					<field name="individuos"/>
+					<field name="genero"/>
+				</tree>
+			</field>
+		</record>
+		<record id="evento_especie_view_form_" model="ir.ui.view">
+			<field name="name">Evento Vista Formulario</field>
+			<field name="model">uniquindio.fr.evento.especie</field>
+			<field name="arch" type="xml">
+				<form string="Evento" version="7.0" create="false" edit="false">
+					<sheet>
+						<group>
+							<field name="create_date" readonly="1" string="Fecha Ingreso Sistema"/>
+							<field name="fecha"/>
+							<field name="flor"/>
+							<field name="evento_id" readonly="1"/>
+							<field name="notas"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="evento_especie_action" model="ir.actions.act_window">
+			<field name="name">Especies por Evento</field>
+			<field name="res_model">uniquindio.fr.evento.especie</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>			
+		</record>
+		<menuitem action="evento_especie_action" id="evento_especie_menu" name="Especies eventos" parent="sic_menu_forrageo"/>
+	</data>
+</odoo>

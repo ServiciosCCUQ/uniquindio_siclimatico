@@ -45,6 +45,7 @@
             'views/estaciones_view.xml',
             'views/medicion_view.xml',
             'views/matriz_datos_view.xml',
+            'views/matriz_datos_view.xml',
             'report/medicion_report_view.xml',
             'data/acciones_planificadas.xml'
     ],
