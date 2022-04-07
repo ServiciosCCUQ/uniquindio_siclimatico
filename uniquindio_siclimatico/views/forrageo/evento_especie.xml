@@ -38,10 +38,13 @@
 					<sheet>
 						<group>
 							<field name="create_date" readonly="1" string="Fecha Ingreso Sistema"/>
-							<field name="fecha"/>
-							<field name="flor"/>
-							<field name="evento_id" readonly="1"/>
-							<field name="notas"/>
+							<field name="evento_id" />
+							<field name="familia_id" />
+							<field name="genero_id" />
+							<field name="especie_id" />
+							<field name="individuos" />
+							<field name="genero" />
+							<field name="notas" />
 						</group>
 					</sheet>
 				</form>
